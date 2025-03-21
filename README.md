@@ -14,6 +14,8 @@ The repo is organized as follows.
 
 ## Run the Starter Kit
 
+In `agents/test_agent.py` we implement a simple baseline that directly calls LLaMA-3.1-8B-Instruct models to generate the function calls and the responses. You can run it as follows: 
+
 ```
 pip install -r requirements.txt
 python3 local_run_task1.py
@@ -21,3 +23,10 @@ python3 local_run_task2.py
 
 # By default, the output will be saved in 'results/task*_responses.json'. 
 ```
+
+If you want to try your own agent, follow these steps: 
+- Put everything you need (including model weights---you won't have access to the Internet during evaluation) in `agents/`. 
+- Implement a class `MyAgent` in `agents/my_agent.py` that has the following two methods: 
+    - `generate_functions_and_responses()`, which will be called for Task 1. 
+    - `generate_responses()`, which will be called for Task 2. 
+- In `agents/user_config.py`, set `UserAgent = MyAgent(...)`. 
