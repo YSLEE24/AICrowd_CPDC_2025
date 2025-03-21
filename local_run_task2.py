@@ -6,6 +6,7 @@ from agents.user_config import UserAgent
 import argparse 
 from tqdm import tqdm
 import os
+import time
 
 
 def load_data(file_path):
@@ -48,7 +49,10 @@ if __name__ == '__main__':
     parser.add_argument('--save_path', type=str, default='results/task2_responses.json')
     args = parser.parse_args()
 
-    data_path = 'task2_train.json'
+    start_time = time.time()
+
+    # data_path = 'task2_train.json'
+    data_path = 'test_evaluation_format_task2.json'
     data_set = load_data(data_path)
     agent = UserAgent()
 
@@ -64,7 +68,9 @@ if __name__ == '__main__':
         for turn_idx, turn in enumerate(conversation.turns):
             response = get_responses(agent, conversation, turn, function_results)
             cur_conv_responses[f"turn_{turn_idx}"] = response 
-    generated_responses.append(cur_conv_responses)
+        generated_responses.append(cur_conv_responses)
 
     with open(args.save_path, 'w') as f:
-        json.dump(generated_responses, f)
+        json.dump(generated_responses, f, indent=4)
+    print("Responses saved to ", args.save_path)
+    print("Total time spent: ", time.time() - start_time)
