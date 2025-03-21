@@ -29,11 +29,13 @@ class DummyResponseAgent(object):
                 "final_responses": "..."
             }
         """
-        function = {
+        # It does not call any functions, so nothing will be recorded in the executor. 
+        # Only return responses. 
+        response = {
             "prompts": "",
-            "final_functions": []
+            "final_responses": "THIS IS A TEST REPLY"
         }
-        return function
+        return response
     
     
     
