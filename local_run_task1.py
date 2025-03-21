@@ -58,10 +58,10 @@ def get_functions_and_responses(agent, cur_conv, cur_turn, tool_registry, action
         tool_registry, 
         action_registry, 
         cur_conv.worldview,
-        conversation.personas['npc'].to_dict(), 
-        conversation.roles['npc'], 
-        {"general_info": conversation.general_knowledge, "knowledge_info": conversation.knowledge},
-        conversation.state, 
+        cur_conv.personas['npc'].to_dict(), 
+        cur_conv.roles['npc'], 
+        {"general_info": cur_conv.general_knowledge, "knowledge_info": cur_conv.knowledge},
+        cur_conv.state, 
         dialogue, 
         executor
     )
