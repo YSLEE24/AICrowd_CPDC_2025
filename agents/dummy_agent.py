@@ -8,27 +8,26 @@ class DummyResponseAgent(object):
     
     
     
-    def generate_functions(self, tool_functions: str, action_functions: str, dialogue: List[Dict[str, str]]) -> Dict[str, Any]:
+    def generate_functions_and_responses(self, tool_registry, action_registry, worldview, persona, role, knowledge, state, dialogue, executor):
         """
         Parameters
         ----------
-        tool_functions: str
-        action_functions: str
+        tool_registry, action_registry are function registries that can index functions with names
+        worldview: str
+        persona: Dict[str, str]
+        role: str
+        knowledge: Dict[str, Any]
+        state: Dict[str, str]
         dialogue: List[Dict[str, str]]
+        executor: a module that can execute function calls and record history of function calling. 
 
         Return
         ----------
-        {
-            "prompts": "...",
-            "final_responses": [
-                {
-                    "name": "...",
-                    "parameters": [
-                        "{name}": "{value}"
-                    }
-                }
-            ]
-        }
+        Dict[str, str]
+            {
+                "prompts": "..."
+                "final_responses": "..."
+            }
         """
         function = {
             "prompts": "",
