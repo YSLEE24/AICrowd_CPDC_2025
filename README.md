@@ -8,6 +8,7 @@ The repo is organized as follows.
 - `agent/`: This is where you will implement your solution.  
 - `npcdataset/`: This is the interface that parses the raw data. 
 - `function_call_sample`: This is the interface of the function calls that will be used for Task 1 in this challenge. Note that the interface here will be different (and much simpler) than the one actually used in the evaluation, **so don't try to tamper with it**. 
+    - `executor.py`: This is the interface to implement the function calls made by the agent. For the starter kit, the `Executor` will only return valid values if the agent's function calls match the `gold_functions`. Otherwise, it will not return anything. However, during the actual evaluation, `Executor` will return adequate values as long as it is a valid function call. 
 - `local_run_task1.py, local_run_task2.py`: They are scripts for you to locally run your agent on the provided data. The evaluation will follow almost the same procedure.
 - `task*_train.json`: They are training datasets. Each file should contain roughly 40 conversations. 
 - `test_evaluation_format_task*.json`: They are subsets sampled from `task*_train.json`. Each file only contains 2 conversations so that you can quickly determine whether the agent will encouter errors. 
