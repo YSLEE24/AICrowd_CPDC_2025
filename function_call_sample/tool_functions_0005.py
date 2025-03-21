@@ -1,5 +1,4 @@
 from typing import List, Dict
-import function_calls
 from .function_registry import FunctionRegistry 
 from langchain.tools import tool
 
@@ -45,20 +44,7 @@ def search_quest(quest_name: str, quest_level: str, quest_duration: str, quest_r
 
     """
 
-    function = "search_quest"
-    args = {
-        "quest_name": quest_name,
-        "quest_level": quest_level,
-        "quest_duration": quest_duration,
-        "quest_reward": quest_reward,
-        "quest_description": quest_descriptionn,
-        "quest_name_operator": quest_name_operator,
-        "quest_level_operator": quest_level_operator,
-        "quest_duration_operator": quest_duration_operator,
-        "quest_reward_operator": quest_reward_operator
-    }
-    ret = function_calls.execute(function, args)
-    return ret
+    pass
     
 
 @tool
@@ -77,7 +63,7 @@ def check_inventory(quest_name: str) -> List[Dict[str, str]]:
         Outputs the abailable  quest(e.g. Collecting Medical Herbs, Collecting Dragon Teardrops , etc.).
     """
 
-    return []
+    pass
 
 @tool 
 def check_basic_info(quest_name: str) -> List[Dict[str, str]]:
@@ -95,10 +81,7 @@ def check_basic_info(quest_name: str) -> List[Dict[str, str]]:
         Outputs the level, duration, reward, and basic information of a specified quest (e.g. Collecting Medical Herbs, Collecting Dragon Teardrops , etc.).
     """
 
-    function = "check_basic_info"
-    args = {"quest_name": quest_name}
-    ret = function_calls.execute(function, args)
-    return ret
+    pass
 
 @tool 
 def check_level(quest_name: str) -> List[Dict[str, str]]:
@@ -116,10 +99,7 @@ def check_level(quest_name: str) -> List[Dict[str, str]]:
         Outputs the level of a specified quest (e.g. Collecting Medical Herbs, Collecting Dragon Teardrops , etc.).
     """
 
-    function = "check_level"
-    args = {"quest_name": quest_name}
-    ret = function_calls.execute(function, args)
-    return ret
+    pass
 
 @tool
 def check_duration(quest_name: str) -> List[Dict[str, str]]:
@@ -137,10 +117,7 @@ def check_duration(quest_name: str) -> List[Dict[str, str]]:
         Outputs the duration (hours) of a specified quest (e.g. Collecting Medical Herbs, Collecting Dragon Teardrops , etc.).
     """
 
-    function = "check_duration"
-    args = {"quest_name": quest_name}
-    ret = function_calls.execute(function, args)
-    return ret
+    pass
 
 
 @tool 
@@ -159,10 +136,7 @@ def check_reward(quest_name: str) -> List[Dict[str, str]]:
         Outputs the reward of a specified quest (e.g. Collecting Medical Herbs, Collecting Dragon Teardrops , etc.).
     """
 
-    function = "check_reward"
-    args = {"quest_name": quest_name}
-    ret = function_calls.execute(function, args)
-    return ret
+    pass
 
 @tool 
 def check_description(quest_name: str) -> List[Dict[str, str]]:
@@ -180,10 +154,7 @@ def check_description(quest_name: str) -> List[Dict[str, str]]:
         Outputs  the basic information and additional detailed information of the specified quest (e.g. Collecting Medical Herbs, Collecting Dragon Teardrops , etc.).
     """
 
-    function = "check_description"
-    args = {"quest_name": quest_name}
-    ret = function_calls.execute(function, args)
-    return ret
+    pass
 
 all_functions = [search_quest, check_inventory, check_basic_info, check_level, check_duration, check_reward, check_description]
 tool_functions_0005 = FunctionRegistry({

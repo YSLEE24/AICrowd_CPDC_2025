@@ -73,4 +73,4 @@ if __name__ == '__main__':
     with open(args.save_path, 'w') as f:
         json.dump(generated_responses, f, indent=4)
     print("Responses saved to ", args.save_path)
-    print("Total time spent: ", time.time() - start_time)
+    print("Total time spent: ", time.time() - start_time, ' seconds')

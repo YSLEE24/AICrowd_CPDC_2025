@@ -1,5 +1,4 @@
 from typing import List, Dict
-import function_calls
 from .function_registry import FunctionRegistry 
 from langchain.tools import tool
 
@@ -51,21 +50,7 @@ def search_item(item_name: str, item_price: str, item_type: str, item_attack: st
         A list of weapon names along with the reasons for the selection.
 
     """
-    
-    function = "search_item"
-    args = {
-        "item_name": item_name,
-        "item_price": item_price,
-        "item_type": item_type,
-        "item_attack": item_attack,
-        "item_description": item_description,
-        "item_name_operator": item_name_operator,
-        "item_price_operator": item_price_operator,
-        "item_type_operator": item_type_operator,
-        "item_attack_operator": item_attack_operator
-    }
-    ret = function_calls.execute(function, args)
-    return ret
+    pass
 
 @tool
 def check_inventory(item_name: str) -> List[Dict[str, str]]:
@@ -83,7 +68,7 @@ def check_inventory(item_name: str) -> List[Dict[str, str]]:
         Outputs the abailable weapon (e.g. Avis Wind, Short Sword, etc.).
 
     """
-    return []
+    pass
 
 @tool
 def check_basic_info(item_name: str) -> List[Dict[str, str]]:
@@ -101,11 +86,8 @@ def check_basic_info(item_name: str) -> List[Dict[str, str]]:
         Outputs basic information about the specified weapon (e.g. Avis Wind, Short Sword, etc.).
 
     """
-    
-    function = "check_basic_info"
-    args = {"item_name": item_name}
-    ret = function_calls.execute(function, args)
-    return ret
+    pass
+
 
 @tool
 def check_price(item_name: str) -> List[Dict[str, str]]:
@@ -124,10 +106,9 @@ def check_price(item_name: str) -> List[Dict[str, str]]:
 
     """
 
-    function = "check_price"
-    args = {"item_name": item_name}
-    ret = function_calls.execute(function, args)
-    return ret
+    pass
+
+
 
 @tool
 def check_type(item_name: str) -> List[Dict[str, str]]:
@@ -146,10 +127,8 @@ def check_type(item_name: str) -> List[Dict[str, str]]:
 
     """
 
-    function = "check_type"
-    args = {"item_name": item_name}
-    ret = function_calls.execute(function, args)
-    return ret
+    pass
+
 
 @tool
 def check_attack(item_name: str) -> List[Dict[str, str]]:
@@ -167,10 +146,8 @@ def check_attack(item_name: str) -> List[Dict[str, str]]:
         Outputs the attack level of the specified weapon (e.g. Avis Wind, Short Sword, etc.)
     """
 
-    function = "check_attack"
-    args = {"item_name": item_name}
-    ret = function_calls.execute(function, args)
-    return ret
+    pass
+
 
 @tool
 def check_description(item_name: str) -> List[Dict[str, str]]:
@@ -188,10 +165,8 @@ def check_description(item_name: str) -> List[Dict[str, str]]:
         Outputs the basic information and additional detailed information of the specified weapon (e.g. Avis Wind, Short Sword, etc.)
     """
 
-    function = "check_description"
-    args = {"item_name": item_name}
-    ret = function_calls.execute(function, args)
-    return ret
+    pass
+
 
 all_functions = [search_item, check_inventory, check_basic_info, check_price, check_type, check_attack, check_description]
 tool_functions_0001 = FunctionRegistry({

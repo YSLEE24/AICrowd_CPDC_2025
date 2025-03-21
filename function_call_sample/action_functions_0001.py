@@ -1,5 +1,7 @@
 from .function_registry import FunctionRegistry 
 from langchain.tools import tool
+from typing import List, Dict, Tuple
+
 
 @tool
 def sell(item_names: List[str]) -> None:
