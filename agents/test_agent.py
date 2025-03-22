@@ -4,7 +4,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 import copy
 
-class TestResponseAgent(object):
+class TestResponseAgentOneStep(object):
     def __init__(self):
         model_path = 'meta-llama/Llama-3.1-8B-Instruct'
         self.model = AutoModelForCausalLM.from_pretrained(model_path, device_map='auto')
@@ -42,16 +42,16 @@ argument name: xxx, vlaue: xxx
 ## Additional Information
 {}"""
         function_information = []
-        for tool_name in tool_functions.all_functions():
-            tool_ = tool_functions.get_function(tool_name)
+        for tool_name in tool_functions['function_registry'].keys():
+            tool_ = tool_functions['function_registry'][tool_name]
             tool_prompt = """
 # Function Name: {}
 # Function Docstring: 
 {}
             """.format(tool_['name'], tool_['description'])
             function_information.append(tool_prompt)
-        for action_name in action_functions.all_functions():
-            action_ = action_functions.get_function(action_name)
+        for action_name in action_functions['function_registry'].keys():
+            action_ = action_functions['function_registry'][action_name]
             action_prompt = """
 # Function Name: {}
 # Function Docstring: 
@@ -242,49 +242,3 @@ Use the following character settings and knowledge to create your response.
         }
         
         
-    def generate_responses(self, worldview, persona, role, knowledge, state, dialogue, function_results) -> Dict[str, str]:
-        """
-        Parameters
-        ----------
-        worldview: str
-        persona: Dict[str, str]
-        role: str
-        knowledge: Dict[str, Any]
-        state: Dict[str, str]
-        dialogue: List[Dict[str, str]]
-        function_results: List[Dict[str, Any]]
-
-        Return
-        ----------
-        Dict[str, str]
-            {
-                "prompts": "..."
-                "final_responses": "..."
-            }
-        """
-        messages = self._create_messages_for_dialogue(worldview, persona, role, knowledge, state, dialogue, function_results)
-        
-        input_ids = self.tokenizer.apply_chat_template(
-            messages,
-            add_generation_prompt=True,
-            return_tensors="pt"
-        ).to(self.model.device)
-
-        outputs = self.model.generate(
-            input_ids,
-            num_beams=1,
-            do_sample=False,
-            temperature=None,
-            top_p=None,
-            max_new_tokens=self.max_gen_len,
-            eos_token_id=self.terminators,
-            pad_token_id=self.tokenizer.eos_token_id
-        )
-        res = outputs[0][input_ids.shape[-1]:]
-        res_str = self.tokenizer.decode(res, skip_special_tokens=True).replace("\n", " ")
-        
-        response = {
-            "prompts": messages,
-            "final_responses": res_str
-        }
-        return response

@@ -39,29 +39,3 @@ class DummyResponseAgent(object):
     
     
     
-    def generate_responses(self, worldview: str, persona: Dict[str, str], role: str, knowledge: Dict[str, Any],
-                           state: Dict[str, str], dialogue: List[Dict[str, str]], function_results: List[Dict[str, Any]]) -> Dict[str, str]:
-        """
-        Parameters
-        ----------
-        worldview: str
-        persona: Dict[str, str]
-        role: str
-        knowledge: Dict[str, Any]
-        state: Dict[str, str]
-        dialogue: List[Dict[str, str]]
-        function_results: List[Dict[str, Any]]
-
-        Return
-        ----------
-        Dict[str, str]
-            {
-                "prompts": "..."
-                "final_responses": "..."
-            }
-        """
-        response = {
-            "prompts": "",
-            "final_responses": "THIS IS A TEST REPLY"
-        }
-        return response
