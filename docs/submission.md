@@ -47,7 +47,12 @@ Your project should follow the structure outlined in the starter kit. Here’s a
 │   └── runtime.md                  # Documentation on the runtime environment setup, dependency configs
 ├── Dockerfile                      # The Dockerfile that will be used to build your submission and all dependencies. The default one will work fine, but you can write your own. 
 ├── docker_run.sh                   # This script builds your submission locally and calls `local_evaluation.py`. It can be used to debug (if your submission fails to build). 
-├── function_call_sample/           # The interface for the agent to call tool and action functions (for task 1). IMPORTANT: This directory will be overwritten during evaluation. DO NOT TAMPER WITH IT. 
+├── function_call_sample/           # The interface for the agent to call tool and action functions (for task 1). 
+│                                   # IMPORTANT: This directory will be overwritten during evaluation. DO NOT TAMPER WITH IT. 
+│   ├──`executor.py`                # This is the interface to implement the function calls made by the agent. For the starter kit, 
+│                                   # the `Executor` will only return valid values if the agent's function calls match the `gold_functions`. 
+│                                   # Otherwise, it will not return anything. However, during the actual evaluation, 
+│                                   # `Executor` will return adequate values as long as it is a valid function call. 
 ├── local_run_task1.py              # Use this to check your model runs locally
 ├── local_run_task2.py              # Use this to check your model runs locally
 ├── npcdataset/                     # A class to read and parse the dataset. You can feel free to implement your own. 
