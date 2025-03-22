@@ -1,13 +1,13 @@
-# Guide to Writing Your Own Models
+# Guide to Writing Your Own Agents
 
-## Model Code Organization
-For a streamlined experience, we suggest placing the code for all your models within the `models` directory. This is a recommendation for organizational purposes, but it's not a strict requirement.
+## Agent Code Organization
+For a streamlined experience, we suggest placing the code for all your agents within the `agent` directory. This is a recommendation for organizational purposes, but it's not a strict requirement.
 
-## Model Base Class
-Your models should inherit from the `ShopBenchBaseModel` class found in [base_model.py](base_model.py). We provide an example model, `dummy_model.py`, to illustrate how you might structure your own model. Crucially, your model class must implement the `batch_predict` method.
+## Agent Class
+We provide an example agent, `test_agent.py`, to illustrate how you might structure your own agent. Crucially, your agent class must implement the `generate_functions_and_responses` method.
 
-## Configuring Your Model
-To ensure your model is recognized and utilized correctly, please specify your model class name in the [`user_config.py`](user_config.py) file, by following the instructions in the inline comments.
+## Configuring Your Agent
+To ensure your agent is recognized and utilized correctly, please specify your agent class name in the [`user_config.py`](user_config.py) file, by following the instructions in the inline comments.
 
 ## Model Inputs and Outputs
 
