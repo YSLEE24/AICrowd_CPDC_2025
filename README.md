@@ -122,22 +122,7 @@ This also includes instructions on [specifying your software runtime](docs/submi
 
 ## 💻 What hardware does my code run on ?
 You can find more details about the hardware and system configuration in [docs/hardware-and-system-config.md](docs/hardware-and-system-config.md).
-In summary, we provide you `4` x [[NVIDIA T4 GPUs](https://www.nvidia.com/en-us/data-center/tesla-t4/)] in Phase 2.
 
-Your solution will be given a certain amount of time for inference, after which it would be immediately killed and no results would be available. The time limit is set at 
-| Phase  | Track 1 | Track 2 | Track 3 | Track 4 | Track 5 |
-| ------ | ------- | ------- | ------- | ------- | ------- |
-| **Phase 2**| 70 minutes | 20 minutes | 30 minutes | 20 minutes | 140 minutes |
-
-For reference, the baseline solution with zero-shot LLaMA3-8B-instruct consumes the following amount of time. 
-
-| Phase  | Track 1 | Track 2 | Track 3 | Track 4 | 
-| ------ | ------- | ------- | ------- | ------- | 
-| **Phase 2**| 1490s | 397s | 576s | 359s | 
-
-We limit the prediction time of each sample to at most **10 seconds**. This limit applies at a batch level. For example, for a batch of 8 samples, you should return the prediction after at most 80 seconds. Otherwise, your submission will be killed. 
-
-Your maximum repo size is 200GB. 
 
 # ❓ Frequently Asked Questions 
 ## Which track is this starter kit for ?
