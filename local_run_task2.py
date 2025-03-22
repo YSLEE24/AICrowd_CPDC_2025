@@ -7,6 +7,7 @@ import argparse
 from tqdm import tqdm
 import os
 import time
+from function_call_langchain import tool_map, action_map, Executor
 
 
 def load_data(file_path):
@@ -15,13 +16,14 @@ def load_data(file_path):
 
     return npcdataset.parsers.parse_conversation_data(data, "test")
 
-def get_responses(agent, cur_conv, cur_turn, function_results) -> List[Dict[str, str]]: 
+def get_responses(agent, cur_conv, cur_turn, tool_registry, action_registry, executor) -> List[Dict[str, str]]: 
     """
         Parameters: 
             agent: UserAgent, the agent that the participants use to generate responses. 
             cur_conv: current conversation. Contains information about worldview, persona, roles, etc. 
             cur_turn: current turn, contains the conversation history up to this turn. 
-            function_results: []
+            tool_registry, agent_registry: functions available for task 2. 
+            executor: It can perform adequate function calls and return proper return values. 
         Returns: str, the response of the current turn. 
     """
     dialogue = [
@@ -32,16 +34,18 @@ def get_responses(agent, cur_conv, cur_turn, function_results) -> List[Dict[str,
         }
         for msg in cur_turn.messages
     ]
-    results = agent.generate_responses(
-        cur_conv.worldview, 
-        cur_conv.personas['npc'].to_dict(),
-        cur_conv.roles['npc'],
+    all_results = agent.generate_functions_and_responses(
+        tool_registry, 
+        action_registry, 
+        cur_conv.worldview,
+        cur_conv.personas['npc'].to_dict(), 
+        cur_conv.roles['npc'], 
         {"general_info": cur_conv.general_knowledge, "knowledge_info": cur_conv.knowledge},
-        cur_conv.state,
-        dialogue,
-        function_results
+        cur_conv.state, 
+        dialogue, 
+        executor
     )
-    return results['final_responses']
+    return all_results['final_responses']
 
 if __name__ == '__main__':
 

@@ -1,4 +1,3 @@
-from .function_registry import FunctionRegistry 
 from langchain.tools import tool
 
 @tool 
@@ -53,11 +52,11 @@ def start(quest_name: str) -> None:
     pass
 
 all_functions = [select_request_record, select, start]
-action_functions_0006 = FunctionRegistry({
+action_functions_0006 = {'function_registry': {
     f.name: {
         'name': f.name, 
         'description': f.description,
         'args': f.args
     }
     for f in all_functions
-})
+}}

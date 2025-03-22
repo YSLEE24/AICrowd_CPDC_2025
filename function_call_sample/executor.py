@@ -10,7 +10,7 @@ class Executor:
             1. This executor is a sample one. It will only check whether the output matches the gold functions. 
                If it matches, we will return the gold return values. 
                It it does not match, it will return nothing. 
-               However, in real evaluations, the executor will return adequate values even though it is not a match with gold functions. 
+               However, in real evaluations, the executor will return adequate values even though it is not an exact match with gold functions. 
             2. Please do not try to tamper with attributes in the Executor. Doing so will lead to errors. 
     """
     def __init__(self, tool_registry, action_registry, gold_functions):

@@ -1,5 +1,4 @@
 from typing import List, Dict
-from .function_registry import FunctionRegistry 
 from langchain.tools import tool
 
 @tool 
@@ -157,11 +156,11 @@ def check_description(quest_name: str) -> List[Dict[str, str]]:
     pass
 
 all_functions = [search_quest, check_inventory, check_basic_info, check_level, check_duration, check_reward, check_description]
-tool_functions_0004 = FunctionRegistry({
+tool_functions_0004 = {'function_registry': {
     f.name: {
         'name': f.name, 
         'description': f.description,
         'args': f.args
     }
     for f in all_functions
-})
+}}

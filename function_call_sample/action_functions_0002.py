@@ -1,4 +1,3 @@
-from .function_registry import FunctionRegistry 
 from langchain.tools import tool
 from typing import List, Dict, Tuple
 
@@ -54,11 +53,11 @@ def equip(item_name: str) -> None:
     pass
 
 all_functions = [sell_request_confirm, sell, equip]
-action_functions_0002 = FunctionRegistry({
+action_functions_0002 = {'function_registry': {
     f.name: {
         'name': f.name, 
         'description': f.description,
         'args': f.args
     }
     for f in all_functions
-})
+}}

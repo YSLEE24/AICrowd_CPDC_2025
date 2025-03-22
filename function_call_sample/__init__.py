@@ -1,4 +1,3 @@
-from .function_registry import FunctionRegistry
 from .tool_functions_0001 import tool_functions_0001
 from .tool_functions_0002 import tool_functions_0002
 from .tool_functions_0003 import tool_functions_0003
