@@ -35,27 +35,30 @@ Your project should follow the structure outlined in the starter kit. Here’s a
 ├── .dockerignore                   # Please specify the paths to your model checkpoints so that the large files won't be built into the docker image. 
 ├── README.md                       # Project documentation and setup instructions
 ├── aicrowd.json                    # Submission meta information - like your username, task name
+├── agents
+│   ├── README.md                   # Documentation specific to the implementation of model interfaces
+│   ├── dummy_agent.py              # A simple or placeholder model for demonstration or testing.
+│   ├── test_agent.py               # We also implement a simple LLaMA3.1-8B-instruct baseline here. 
+│   └── user_config.py              # IMPORTANT: Configuration file to specify your model 
 ├── data
-│   └── development.json            # Development dataset local testing
+│   ├── task*_sample.json           # Minimal dataset for debugging. 
+│   ├── task*_train.json            # Training datasets (approximately 40 conversations). 
 ├── docs
 │   └── runtime.md                  # Documentation on the runtime environment setup, dependency configs
 ├── Dockerfile                      # The Dockerfile that will be used to build your submission and all dependencies. The default one will work fine, but you can write your own. 
 ├── docker_run.sh                   # This script builds your submission locally and calls `local_evaluation.py`. It can be used to debug (if your submission fails to build). 
-├── local_evaluation.py             # Use this to check your model evaluation flow locally
-├── metrics.py                      # Scripts to calculate evaluation metrics for your model's performance
-├── models
-│   ├── README.md                   # Documentation specific to the implementation of model interfaces
-│   ├── base_model.py               # Base model class 
-│   ├── dummy_model.py              # A simple or placeholder model for demonstration or testing. We also implement a simple Vicuna-7B baseline here. 
-│   └── user_config.py              # IMPORTANT: Configuration file to specify your model 
-├── parsers.py                      # Model output parser
+├── function_call_sample/           # The interface for the agent to call tool and action functions (for task 1). IMPORTANT: This directory will be overwritten during evaluation. DO NOT TAMPER WITH IT. 
+├── local_run_task1.py              # Use this to check your model runs locally
+├── local_run_task2.py              # Use this to check your model runs locally
+├── npcdataset/                     # A class to read and parse the dataset. You can feel free to implement your own. 
 ├── requirements.txt                # Python packages to be installed for model development
-├── requirements_eval.txt           # Additional Python packages to be installed for local evaluation
 └── utilities
     └── _Dockerfile                 # Example Dockerfile for specifying runtime via Docker
 ```
 
-Remember, **your submission metadata JSON (`aicrowd.json`)** is crucial for mapping your submission to the challenge. Ensure it contains the correct `challenge_id`, `authors`, and other necessary information. **To utilize GPUs, set the `"gpu": true` flag in your `aicrowd.json`.**
+Remember, 
+- **your submission metadata JSON (`aicrowd.json`)** is crucial for mapping your submission to the challenge. Ensure it contains the correct `challenge_id`, `authors`, and other necessary information. **To utilize GPUs, set the `"gpu": true` flag in your `aicrowd.json`.**
+- The entire `function_call_sample` directory will be overwritten during actual evaluation. All local modifications will be lost. DO NOT TAMPER WITH. 
 
 ## Submitting to Different Tracks
 
@@ -71,7 +74,7 @@ Specify the track by setting the appropriate `challenge_id` in your [aicrowd.jso
 
 ## Submission Entry Point
 
-The evaluation process will instantiate a model from `models/user_config.py` for evaluation. Ensure this configuration is set correctly.
+The evaluation process will instantiate an agent from `agent/user_config.py` for evaluation. Ensure this configuration is set correctly.
 
 ## Setting Up SSH Keys
 
