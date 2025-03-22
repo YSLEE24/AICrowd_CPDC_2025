@@ -102,9 +102,9 @@ Use the following character settings and knowledge to create your response.
                 knowledge_setting = knowledge_setting + "\n"
             for arg in f_result["parameters"]:
                 if knowledge_setting == "":
-                    knowledge_setting = arg + ": " + f_result["parameters"][arg]
+                    knowledge_setting = arg + ": " + str(f_result["parameters"][arg])
                 else:
-                    knowledge_setting = knowledge_setting + ", " + arg + ": " + f_result["parameters"][arg]
+                    knowledge_setting = knowledge_setting + ", " + arg + ": " + str(f_result["parameters"][arg])
             for item in f_result["return"]:
                 for key in item:
                     if knowledge_setting == "":
