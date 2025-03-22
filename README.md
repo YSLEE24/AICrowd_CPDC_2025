@@ -1,6 +1,62 @@
 # Starter Kit for Sony Commonsense Persona-Grounded Dialogue Challenge 2025
 
-This repo is a starter kit for the Sony Commonsense Persona-Grounded Dialogue Challenge 2025. It contains sample data and some sample code for you to locally test your agents. 
+This repository is the Sony Commonsense Persona-Grounded Dialogue Challenge (CPDC) **Submission template and Starter kit**! Clone the repository to compete now!
+
+**This repository contains**:
+*  **Documentation** on how to submit your models to the leaderboard
+*  **The procedure** for best practices and information on how we evaluate your model, etc.
+*  **Starter code** for you to get started!
+
+# Table of Contents
+
+1. [Competition Overview](#-competition-overview)
+2. [Dataset](#-dataset)
+3. [Tasks](#-tasks)
+4. [Evaluation Metrics](#-evaluation-metrics)
+5. [Getting Started](#-getting-started)
+   - [How to write your own model?](#️-how-to-write-your-own-model)
+   - [How to start participating?](#-how-to-start-participating)
+      - [Setup](#setup)
+      - [How to make a submission?](#-how-to-make-a-submission)
+      - [What hardware does my code run on?](#-what-hardware-does-my-code-run-on-)
+      - [How are my model responses parsed by the evaluators?](#-how-are-my-model-responses-parsed-by-the-evaluators-)
+6. [Frequently Asked Questions](#-frequently-asked-questions)
+6. [Important Links](#-important-links)
+
+# Competition Overview
+
+You’re playing your favourite video game, navigating a bustling medieval city on your quest. When you meet a blacksmith, he greets you and mentions last night’s storm that damaged his roof. You ask about a new weapon, and he recalls your last visit, suggests an upgrade, and even offers a discount because you helped him in a previous quest.
+
+NPCs that are context-aware respond naturally and adapt to the world around them to enable dynamic in-game interactions.
+
+But most NPCs today have repetitive, disconnected, and robotic dialogue, struggling to balance small talk with task-driven exchanges—the very elements that make games exciting and immersive.
+
+🎮 Enter the Commonsense Persona-grounded Dialogue Challenge (CPDC 2025)! 🎮
+
+How can we make NPCs feel real? This challenge pushes the boundaries of AI-driven dialogue—creating characters that think, remember, and interact naturally for richer, more immersive game worlds.
+
+This year, the challenge consists of three tasks:
+
+- Task 1: Task-Oriented Dialogue Response Generation
+- Task 2: Commonsense Dialogue Response Generation
+- Task 3: A hybrid of Task 1 and Task 2, evaluating whether both objectives can be achieved simultaneously with a single model
+
+# Dataset
+We provide two dataset splits: 
+- `test_evaluation_format_task*.json`: They are minimal data splits mainly for debugging. 
+- `task*_train.json`: They serve as training data for the challenge. 
+
+Each `.json` file contains several multi-turn conversations between a player and an NPC in a game environment. Each conversation has its unique worldviews, settings, player and NPC persona, etc. 
+
+`npcdataset/` provides an interface for participants to parse the raw data. 
+
+# Tasks
+The Sony CPDC challenge will be split into three tasks. 
+- Task 1: Task-Oriented Dialogue Response Generation: The data for task 1 will include persona and worldview information as common information, along with available function definitions and role-specific knowledge. Participants will use this information to call functions when necessary and may use the results of these function calls to generate responses.
+- Task 2: Commonsense Dialogue Response Generation: The data for task 2 will include persona and worldview information as common information, along with available function definitions and role-specific knowledge. Based on this information, participants will generate natural and character-appropriate responses.
+- Task 3: A hybrid of Task 1 and Task 2, evaluating whether both objectives can be achieved simultaneously with a single model. Submitting to Task 3 will automatically result in evaluation under both Task 1 and Task 2. Therefore, participants should prepare a model (or system) that meets the requirements of both tasks.
+
+
 
 ## Structure
 The repo is organized as follows. 
