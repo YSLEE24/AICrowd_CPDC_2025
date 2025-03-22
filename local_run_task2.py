@@ -7,7 +7,7 @@ import argparse
 from tqdm import tqdm
 import os
 import time
-from function_call_langchain import tool_map, action_map, Executor
+from function_call_sample import tool_map, action_map, Executor
 
 
 def load_data(file_path):
@@ -64,13 +64,23 @@ if __name__ == '__main__':
     if not os.path.exists(save_directory):
         os.makedirs(save_directory)
 
-    # task 2 does not involve function calls. 
-    function_results = []
+
     generated_responses = []
     for conv_idx, conversation in tqdm(enumerate(data_set)):
         cur_conv_responses = {}
+        tool_registry = tool_map[conversation.function_list_id]
+        action_registry = action_map[conversation.function_list_id]
         for turn_idx, turn in enumerate(conversation.turns):
-            response = get_responses(agent, conversation, turn, function_results)
+            gold_functions = [
+                {
+                    "name": function.name,
+                    "parameters": function.parameters,
+                    'return': function.return_values
+                }
+                for function in turn.gold_functions
+            ]
+            cur_turn_exec = Executor(tool_registry, action_registry, gold_functions)
+            response = get_responses(agent, conversation, turn, tool_registry, action_registry, cur_turn_exec)
             cur_conv_responses[f"turn_{turn_idx}"] = response 
         generated_responses.append(cur_conv_responses)
 
