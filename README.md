@@ -113,12 +113,6 @@ This also includes instructions on [specifying your software runtime](docs/submi
 
 **Note**: **Remember to accept the Challenge Rules** on the challenge page, **and** the task page before making your first submission.
 
-## 📮 How to make a submission?
-
-Please follow the instructions in [docs/submission.md](docs/submission.md) to make your first submission. 
-This also includes instructions on [specifying your software runtime](docs/submission.md#specifying-software-runtime-and-dependencies), [code structure](docs/submission.md#code-structure-guidelines), [submitting to different tracks](docs/submission.md#submitting-to-different-tracks).
-
-**Note**: **Remember to accept the Challenge Rules** on the challenge page, **and** the task page before making your first submission.
 
 ## 💻 What hardware does my code run on ?
 You can find more details about the hardware and system configuration in [docs/hardware-and-system-config.md](docs/hardware-and-system-config.md).
