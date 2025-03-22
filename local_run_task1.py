@@ -4,7 +4,7 @@ import numpy as np
 import copy
 import npcdataset.parsers
 from agents.user_config import UserAgent
-from function_call_sample import tool_map, action_map, Executor 
+from function_call_langchain import tool_map, action_map, Executor 
 import argparse 
 import time 
 from tqdm import tqdm 
@@ -74,8 +74,8 @@ if __name__ == '__main__':
 
     start_time = time.time() 
 
-    # data_path = 'task1_train.json'
-    data_path = 'test_evaluation_format_task1.json'
+    # data_path = 'data/task1_train.json'
+    data_path = 'data/task1_sample.json'
     data_set = load_data(data_path)
     agent = UserAgent() 
 
