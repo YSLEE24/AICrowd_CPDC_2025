@@ -5,7 +5,7 @@
 This repository is the Sony Commonsense Persona-Grounded Dialogue Challenge (CPDC) 2025 **Submission template and Starter kit**! Clone the repository to compete now!
 
 **This repository contains**:
-*  **Documentation** on how to submit your models to the leaderboard
+*  **Documentation** on how to submit your agents to the leaderboard
 *  **The procedure** for best practices and information on how we evaluate your model, etc.
 *  **Starter code** for you to get started!
 
@@ -16,12 +16,11 @@ This repository is the Sony Commonsense Persona-Grounded Dialogue Challenge (CPD
 3. [Tasks](#-tasks)
 4. [Evaluation Metrics](#-evaluation-metrics)
 5. [Getting Started](#-getting-started)
-   - [How to write your own model?](#️-how-to-write-your-own-model)
+   - [How to write your own agent?](#️-how-to-write-your-own-agent)
    - [How to start participating?](#-how-to-start-participating)
       - [Setup](#setup)
       - [How to make a submission?](#-how-to-make-a-submission)
       - [What hardware does my code run on?](#-what-hardware-does-my-code-run-on-)
-      - [How are my model responses parsed by the evaluators?](#-how-are-my-model-responses-parsed-by-the-evaluators-)
 6. [Frequently Asked Questions](#-frequently-asked-questions)
 6. [Important Links](#-important-links)
 
@@ -41,12 +40,12 @@ This year, the challenge consists of three tasks:
 
 - Task 1: Task-Oriented Dialogue Response Generation
 - Task 2: Commonsense Dialogue Response Generation
-- Task 3: A hybrid of Task 1 and Task 2, evaluating whether both objectives can be achieved simultaneously with a single model
+- Task 3: A hybrid of Task 1 and Task 2, evaluating whether both objectives can be achieved simultaneously with a single agent
 
 # Dataset
 We provide two dataset splits: 
-- `test_evaluation_format_task*.json`: They are minimal data splits mainly for debugging. 
-- `task*_train.json`: They serve as training data for the challenge. 
+- `data/test_evaluation_format_task*.json`: They are minimal data splits mainly for debugging. 
+- `data/task*_train.json`: They serve as training data for the challenge. 
 
 Each `.json` file contains several multi-turn conversations between a player and an NPC in a game environment. Each conversation has its unique worldviews, settings, player and NPC persona, etc. 
 
@@ -58,7 +57,7 @@ Under the challenge rules, participants can feel free to use any training data t
 The Sony CPDC challenge will be split into three tasks. 
 - **Task 1: Task-Oriented Dialogue Response Generation**: The data for task 1 will include persona and worldview information as common information, along with available function definitions and role-specific knowledge. Participants will use this information to call functions when necessary and may use the results of these function calls to generate responses.
 - **Task 2: Commonsense Dialogue Response Generation**: The data for task 2 will include persona and worldview information as common information, along with available function definitions and role-specific knowledge. Based on this information, participants will generate natural and character-appropriate responses.
-- **Task 3: A hybrid of Task 1 and Task 2**, evaluating whether both objectives can be achieved simultaneously with a single model. Submitting to Task 3 will automatically result in evaluation under both Task 1 and Task 2. Therefore, participants should prepare a model (or system) that meets the requirements of both tasks.
+- **Task 3: A hybrid of Task 1 and Task 2**, evaluating whether both objectives can be achieved simultaneously with a single agent. Submitting to Task 3 will automatically result in evaluation under both Task 1 and Task 2. Therefore, participants should prepare an agent that meets the requirements of both tasks.
 
 # Evaluation Metrics 
 Systems for task 1 will be evaluated on both function calling and response generation. Systems for task 2 will only be evaluated on response generation. 
@@ -70,13 +69,13 @@ Please refer to [local_run_task1.py](local_run_task1.py) and [local_run_task2.py
 # 🏁 Getting Started
 1. **Sign up** to join the competition [on the AIcrowd website](https://www.aicrowd.com/).
 2. **Fork** this starter kit repository. You can use [this link](https://gitlab.aicrowd.com/) to create a fork.
-3. **Clone** your forked repo and start developing your model.
-4. **Develop** your model(s) following the template in [how to write your own model](#how-to-write-your-own-model) section.
+3. **Clone** your forked repo and start developing your agent.
+4. **Develop** your agent(s) following the template in [how to write your own agent](#how-to-write-your-own-agent) section.
 5. [**Submit**](#-how-to-make-a-submission) your trained models to [AIcrowd Gitlab](https://gitlab.aicrowd.com) for evaluation [(full instructions below)](#-how-to-make-a-submission). The automated evaluation setup will evaluate the submissions on the private datasets and report the metrics on the leaderboard of the competition.
 
-# ✍️ How to write your own model?
+# ✍️ How to write your own agent?
 
-In `agents/test_agent.py` we implement a simple baseline that directly calls LLaMA-3.1-8B-Instruct models to generate the function calls and the responses. You can run it as follows: 
+In `agents/test_agent.py` we implement a simple baseline that directly calls LLaMA-3.1-8B-Instruct modess to generate the function calls and the responses. You can run it as follows: 
 
 ```
 pip install -r requirements.txt
@@ -93,7 +92,7 @@ If you want to try your own agent, follow these steps:
     - `generate_responses()`, which will be called for Task 2. 
 - In `agents/user_config.py`, set `UserAgent = MyAgent(...)`. 
 
-Please follow the instructions in [models/README.md](models/README.md) for instructions and examples on how to write your own models for this competition.
+Please follow the instructions in [agents/README.md](agents/README.md) for instructions and examples on how to write your own agents for this competition.
 
 # 🚴 How to start participating?
 
@@ -117,9 +116,9 @@ You can add your SSH Keys to your GitLab account by going to your profile settin
     pip install -r requirements.txt
     ```
 
-5. Write your own model as described in [How to write your own model](#how-to-write-your-own-model) section.
+5. Write your own agent as described in [How to write your own agent](#how-to-write-your-own-agent) section.
 
-6. Test your model locally using `python local_evaluation.py`.
+6. Test your agent locally using `python local_run_task*.py`.
 
 7. Accept the Challenge Rules on the main [challenge page](https://www.aicrowd.com/) by clicking on the **Participate** button. Also accept the Challenge Rules on the Task specific page (link on the challenge page) that you want to submit to.
 
