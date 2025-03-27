@@ -6,7 +6,7 @@ import json
 
 class GroundTruthAgent(object):
     def __init__(self):
-        ground_truth_path = 'test_evaluation_format_task1.json'
+        ground_truth_path = 'data/task1_sample.json'
         with open(ground_truth_path, "r") as f:
             self.ground_truth = json.load(f)
         self.conversation_idx = 0

@@ -1,125 +1,243 @@
 [
     {
         "turn_0": {
-            "response": "A battle, you say?  (leaning forward, eyes narrowing slightly)  I've got just the thing for you.  Let me think for a moment... (pausing, tapping chin)  Considering the variety of enemies you might face, I'd recommend something versatile and powerful.  Have you considered the Bloody Saint Cross?  It's a cross-shaped blunt weapon with a dark reputation, but it's effective against large monsters.  The weight and balance of the cross make it easy to wield, and the dark power it possesses can give you an edge in battle.  Alternatively, if you're looking for something a bit more... (pausing, struggling to hear)  Excuse me, what was that?  Could you repeat that?  I'm afraid I didn't quite catch it.  (smiling apologetically)  Ah, yes, as I was saying, if you're looking for something a bit more... (pausing again)  Ah, yes!  The Dragon Cutter!  It's a sharp sword said to be able to cut through dragon scales.  That's a formidable opponent, if I do say so myself.  The Dragon Cutter would be a great choice for anyone facing a dragon or other large, scaled creature.  Which one of these catches your eye?  (leaning back, eyes sparkling with interest)",
-            "functions": []
-        },
-        "turn_1": {
-            "response": "You're looking at the Hunter's Bow. That's a fine choice, a popular model among hunters and adventurers. It's known for its rapid fire capabilities and is quite effective for taking down multiple targets quickly. However, I must ask, would you like to repeat that for me? I'm having a bit of trouble hearing.",
+            "response": "Ah, well that will depend on what type of weapon you need. We carry single and double-handed swords, axes, spears, bows, whips, and a selection of blunt weapons.",
             "functions": [
                 {
-                    "name": "check_type",
+                    "name": "search_item",
+                    "parameters": {
+                        "item_description": "a weapon for an upcoming battle"
+                    },
+                    "return": [
+                        {
+                            "item_type": "Single-Handed Sword",
+                            "reason": ""
+                        },
+                        {
+                            "item_type": "Double-Handed Sword",
+                            "reason": ""
+                        },
+                        {
+                            "item_type": "Axe",
+                            "reason": ""
+                        },
+                        {
+                            "item_type": "Spear",
+                            "reason": ""
+                        },
+                        {
+                            "item_type": "Bow",
+                            "reason": ""
+                        },
+                        {
+                            "item_type": "Whip",
+                            "reason": ""
+                        },
+                        {
+                            "item_type": "Blunt Weapon",
+                            "reason": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        "turn_1": {
+            "response": "This one? It is the Hunter's Bow. While it may deal less damage than some of our other weapons, it makes up for it with quick reloading speed allowing you to fire in quick succession. This one here is 100 gold.",
+            "functions": [
+                {
+                    "name": "check_basic_info",
                     "parameters": {
                         "item_name": "Hunter's Bow"
-                    }
+                    },
+                    "return": [
+                        {
+                            "type": "Bow",
+                            "price": "100 Gold",
+                            "attack": "10",
+                            "description": "A bow which is often used for hunting. It is easy-to-handle and excels in rapid-firing. "
+                        }
+                    ]
                 }
             ]
         },
         "turn_2": {
-            "response": "The one next to it is the Avis Wind. It's a light and sturdy bow that excels in rapid fire. It's said that once you're targeted by this bow, there's no way of escape. It's a very popular choice among our customers, especially those who prefer to use ranged attacks. As for its strength, I'd say it's a bit stronger than the Hunter's Bow, but not by much. The price for the Avis Wind is 120 gold.",
-            "functions": []
-        },
-        "turn_3": {
-            "response": "*leans in closer, cupping hand around ear* Ah, you're referring to the Avis Wind? *pauses to repeat* Yes, the Avis Wind. It's a very... *pauses again* powerful bow. It's said to be able to target its victims with ease, making it nearly impossible to escape once hit. *leans back, eyes narrowing slightly* However, I must warn you, it's a bit... *pauses once more* expensive. It costs 500 gold. *looks at you expectantly*",
+            "response": "That is the Long Bow, an excellent choice for a strong young man like yourself. While it cannot be reloaded as quickly, it is excellent for long range attacks and can deal more damage than the standard Hunter's Bow. This one costs 300 gold.",
             "functions": [
-                {
-                    "name": "check_description",
-                    "parameters": {
-                        "item_name": "bow"
-                    }
-                },
                 {
                     "name": "check_basic_info",
                     "parameters": {
-                        "item_name": "bow"
-                    }
+                        "item_name": "Long Bow"
+                    },
+                    "return": [
+                        {
+                            "type": "Bow",
+                            "price": "300 Gold",
+                            "attack": "30",
+                            "description": "A bow that can travel long distances, allowing aims on distant enemies. Striking force of each bow is powerful but cannot be fired rapidly."
+                        }
+                    ]
+                }
+            ]
+        },
+        "turn_3": {
+            "response": "You are correct! That is the Avis Wind and it has a reputation for speed and strength. It is said that once this bow is used, the target cannot escape. It fires rapidly with powerful strikes, but this reputation comes with a hefty price tag of 7500 gold.",
+            "functions": [
+                {
+                    "name": "check_basic_info",
+                    "parameters": {
+                        "item_name": "Avis Wind"
+                    },
+                    "return": [
+                        {
+                            "type": "Bow",
+                            "price": "7500 Gold",
+                            "attack": "65",
+                            "description": "A light and sturdy bow that excels in rapid fire. It is said that once you are targeted by this bow, there is no way of escape."
+                        }
+                    ]
                 }
             ]
         },
         "turn_4": {
-            "response": "The Avis Wind is a fine choice. I'll just need to wrap it up for you. *gets up to retrieve the Avis Wind and begins to carefully wrap it in cloth*  However, I must ask, would you like to repeat that order for me? I'm afraid I'm having a bit of trouble hearing you clearly. *leans in closer*",
+            "response": "Thank you for your patronage! Would you like to equip your item now?",
             "functions": [
                 {
-                    "name": "check_inventory",
+                    "name": "sell",
                     "parameters": {
-                        "item_name": "Avis Wind"
-                    }
+                        "item_name": [
+                            "Avis Wind"
+                        ]
+                    },
+                    "return": []
                 }
             ]
         },
         "turn_5": {
-            "response": "I'll just need to ring this up for you. *rings up the sale* That will be 7500 gold, please. *hands you the Avis Wind*  Now, let me just check the bow to make sure it's in good condition... *takes the bow and inspects it* Ah, yes, everything seems to be in order. *hands you the bow*  I hope you find the Avis Wind to be a valuable addition to your arsenal. If you have any other questions or need any further assistance, don't hesitate to ask. *smiles*  By the way, would you like to repeat that order for me? *leans in slightly, as I'm having a bit of trouble hearing*",
-            "functions": []
+            "response": "Your weapon has been equipped. Safe travels adventurer, come back anytime!",
+            "functions": [
+                {
+                    "name": "equip",
+                    "parameters": {
+                        "item_name": "Avis Wind"
+                    },
+                    "return": []
+                }
+            ]
         }
     },
     {
         "turn_0": {
-            "response": "I'd be happy to help you prepare for your journey. As a guild receptionist, I've seen many adventurers come and go, and I've learned a thing or two about what makes a successful trip.  First of all, let me ask you, what's the nature of your journey? Are you looking for a specific quest or task to complete? Or are you simply looking for some general advice on how to stay safe and successful on the road?  If you're looking for a specific quest, I can recommend a few options that might be suitable for your skill level and interests. For example, if you're interested in collecting resources, I'd recommend the \"Collecting Medical Herbs\" quest. It's a relatively straightforward task that requires you to gather a certain number of medicinal herbs from a nearby forest. The herbs are in high demand, so it's a good way to earn some gold and experience points.  If you're looking for something a bit more challenging, I'd recommend the \"Exterminating the Giant Rats\" quest. It's a bit more involved, but it's a great way to earn some experience points and get some practice fighting against a large number of enemies.  Of course, if you're looking for something really challenging, I'd recommend the \"Hunting Down the Desert Tiger\" quest. It's a tough one, but it's a great way to earn some serious experience points and get some practice fighting against a powerful enemy.  In terms of general travel tips, I'd recommend being prepared for anything. Bring plenty of food, water, and supplies, and make sure you have a good map and compass to help you navigate. It's also a good idea to travel with a group, especially if you're not familiar with the area.  Finally, don't be afraid to ask for help if you need it. The guild is always here to support you, and we have a lot of resources available to help you prepare for your journey.  I hope these tips are helpful! Do you have any specific questions or concerns about your journey?",
-            "functions": [
-                {
-                    "name": "check_basic_info",
-                    "parameters": {
-                        "quest_name": "Any recommended or suggested quest for the journey"
-                    }
-                }
-            ]
+            "response": "Of course! Could you tell me your destination and if you have any specific interests? I'd be happy to offer tailored suggestions.",
+            "functions": []
         },
         "turn_1": {
-            "response": "The Commercial Escort quest, a classic. I've seen many adventurers take on this quest over the years. As a guild receptionist, I've had the chance to review the quest details and offer some advice.  Firstly, be prepared for a challenging fight. The three monsters that ambush you along the way are no pushovers. They'll attack simultaneously, so you'll need to be quick on your feet and have a solid strategy to take them down.  One piece of advice I can offer is to make sure you have a good understanding of the terrain and the monster's movements. Knowing the layout of the route and where the monsters will be hiding can give you a significant advantage.  Also, don't forget to keep an eye on the trading party's safety. They're not combatants, so you'll need to make sure they're protected from harm.  Lastly, be sure to review the guild's standard procedures for escorting parties. We have a set protocol in place to ensure the safety of both the party and the escort.  If you have any specific questions or concerns, feel free to ask. I'm here to help.",
+            "response": "Ah, the Commercial Escort quest. You'll be escorting a trading party to a neighboring town. There have been reports of monsters lurking around the streets recently.",
             "functions": [
                 {
                     "name": "check_basic_info",
                     "parameters": {
                         "quest_name": "Commercial Escort"
-                    }
+                    },
+                    "return": [
+                        {
+                            "duration": "7 days",
+                            "level": "B",
+                            "reward": "50",
+                            "description": "A trading party will head out to a neighboring town. Monsters have recently been reported to be seen on the streets. You are to escort the party safely to its destination.(Tips)There are 3 monsters hiding along the way. They will ambush you and attack simultaneously. You will need to battle all 3 of them at the same time."
+                        }
+                    ]
                 }
             ]
         },
         "turn_2": {
-            "response": "No, no, you won't be leading the party. Your role is to escort them safely to their destination. You'll need to be prepared to defend them against the three monsters that will ambush you along the way. They'll attack simultaneously, so you'll need to be quick on your feet and have a solid battle strategy.  I've seen many adventurers complete this quest successfully, but it's always a good idea to be prepared. Make sure you have a good understanding of the route, the monsters you'll be facing, and a solid plan for taking them down.  Also, keep in mind that the monsters are not particularly strong, so it's not a particularly challenging fight. However, it's still a good idea to be cautious and take your time. You don't want to put the trading party in harm's way.  If you have any questions or need any more information, feel free to ask. I'm happy to help.",
+            "response": "Definitely. Your role is to escort the party safely to its destination.",
             "functions": [
                 {
-                    "name": "check_basic_info",
+                    "name": "check_description",
                     "parameters": {
-                        "quest_name": "Collecting Medical Herbs"
-                    }
+                        "quest_name": "Commercial Escort"
+                    },
+                    "return": [
+                        {
+                            "description": "### Quest Description\\n- A trading party will head out to a neighboring town. Monsters have recently been reported to be seen on the streets. You are to escort the party safely to its destination.\\n- Traveling in a convoy adds extra protection and responsibility.\\n- Compared to the Collecting Dragon Teardrops, this quest is more likely to result in success for the average adventurer.\\n- It could give you the opportunity to protect a group rather than just slay creatures.\\n- It\u2019s a little safer than the abandoned building, but still requires vigilance.\\n- It challenges you in a unique way. It\u2019s all about pushing your limits.\\n- It will test your ability to handle unexpected threats while protecting others.\\n- It has been popular among adventurers looking for steady rewards.\\n\\n### Monster Information\\n- The monsters stalk passersby.\\n- The monsters appear suddenly.\\n- The monsters are not too powerful individually.\\n- There are 3 monsters hiding along the way. They will ambush you and attack simultaneously. You will need to battle all 3 of them at the same time.\\n- You need to stay sharp for the 3 monsters that will ambush you along the way.\\n- You\u2019ll need to be strategic and ready for a tough battle.\\n\\n### Tips and Strategy\\n- Always keep your weapon well-maintained. A sharp blade is as important as your skill with it.\\n- No matter how strong and brave you are, you never know what might happen on the battlefield, and sometimes retreating might be necessary.\\n- You should rely on good tools in order to see fewer tragic sacrifices."
+                        }
+                    ]
                 }
             ]
         },
         "turn_3": {
-            "response": "From what I've gathered, there are three monsters hiding along the way, and they'll ambush you and attack simultaneously. It's essential to be prepared for a battle. I'd recommend planning for at least two days, considering the travel time and the potential combat.  As for preparation, I'd suggest gathering information about the monsters you'll be facing and their weaknesses. It's also a good idea to stock up on supplies, such as food, water, and healing potions. Make sure the party is well-equipped and has a solid battle strategy in place.  Additionally, it's always a good idea to check the weather forecast before heading out. If it's going to be a rainy day, it might be more challenging to collect the herbs you'll need for healing.",
+            "response": "This quest will take 7 days to complete. I'd recommend preparing for the monsters along the way.",
             "functions": [
                 {
                     "name": "check_duration",
                     "parameters": {
-                        "quest_name": "This quest"
-                    }
+                        "quest_name": "Commercial Escort"
+                    },
+                    "return": [
+                        {
+                            "duration": "7 days"
+                        }
+                    ]
+                },
+                {
+                    "name": "check_description",
+                    "parameters": {
+                        "quest_name": "Commercial Escort"
+                    },
+                    "return": [
+                        {
+                            "description": "### Quest Description\\n- A trading party will head out to a neighboring town. Monsters have recently been reported to be seen on the streets. You are to escort the party safely to its destination.\\n- Traveling in a convoy adds extra protection and responsibility.\\n- Compared to the Collecting Dragon Teardrops, this quest is more likely to result in success for the average adventurer.\\n- It could give you the opportunity to protect a group rather than just slay creatures.\\n- It\u2019s a little safer than the abandoned building, but still requires vigilance.\\n- It challenges you in a unique way. It\u2019s all about pushing your limits.\\n- It will test your ability to handle unexpected threats while protecting others.\\n- It has been popular among adventurers looking for steady rewards.\\n\\n### Monster Information\\n- The monsters stalk passersby.\\n- The monsters appear suddenly.\\n- The monsters are not too powerful individually.\\n- There are 3 monsters hiding along the way. They will ambush you and attack simultaneously. You will need to battle all 3 of them at the same time.\\n- You need to stay sharp for the 3 monsters that will ambush you along the way.\\n- You\u2019ll need to be strategic and ready for a tough battle.\\n\\n### Tips and Strategy\\n- Always keep your weapon well-maintained. A sharp blade is as important as your skill with it.\\n- No matter how strong and brave you are, you never know what might happen on the battlefield, and sometimes retreating might be necessary.\\n- You should rely on good tools in order to see fewer tragic sacrifices."
+                        }
+                    ]
                 }
             ]
         },
         "turn_4": {
-            "response": "To approach this quest, you'll need to be prepared for a battle with three monsters that will ambush you simultaneously. It's essential to have a solid battle strategy in place. I'd suggest gathering information about the monsters you'll be facing and preparing your gear accordingly.  Also, make sure to communicate with the trading party and coordinate your efforts to ensure everyone's safety. It's a good idea to have a plan in place for emergency situations.  If you're ready, I can provide you with the necessary documents and information to get started on the Commercial Escort quest.",
+            "response": "So, you've decided on the \u2018Commercial Escort' quest. Is that correct?",
             "functions": [
                 {
                     "name": "select_request_confirm",
                     "parameters": {
-                        "quest_name": "This quest"
-                    }
+                        "quest_name": "Commercial Escort"
+                    },
+                    "return": []
+                },
+                {
+                    "name": "check_description",
+                    "parameters": {
+                        "quest_name": "Commercial Escort"
+                    },
+                    "return": [
+                        {
+                            "description": "### Quest Description\\n- A trading party will head out to a neighboring town. Monsters have recently been reported to be seen on the streets. You are to escort the party safely to its destination.\\n- Traveling in a convoy adds extra protection and responsibility.\\n- Compared to the Collecting Dragon Teardrops, this quest is more likely to result in success for the average adventurer.\\n- It could give you the opportunity to protect a group rather than just slay creatures.\\n- It\u2019s a little safer than the abandoned building, but still requires vigilance.\\n- It challenges you in a unique way. It\u2019s all about pushing your limits.\\n- It will test your ability to handle unexpected threats while protecting others.\\n- It has been popular among adventurers looking for steady rewards.\\n\\n### Monster Information\\n- The monsters stalk passersby.\\n- The monsters appear suddenly.\\n- The monsters are not too powerful individually.\\n- There are 3 monsters hiding along the way. They will ambush you and attack simultaneously. You will need to battle all 3 of them at the same time.\\n- You need to stay sharp for the 3 monsters that will ambush you along the way.\\n- You\u2019ll need to be strategic and ready for a tough battle.\\n\\n### Tips and Strategy\\n- Always keep your weapon well-maintained. A sharp blade is as important as your skill with it.\\n- No matter how strong and brave you are, you never know what might happen on the battlefield, and sometimes retreating might be necessary.\\n- You should rely on good tools in order to see fewer tragic sacrifices."
+                        }
+                    ]
                 }
             ]
         },
         "turn_5": {
-            "response": "You're welcome. I'm glad I could help. As for the quest, there are three monsters hiding along the way. They will ambush you and attack simultaneously, so you'll need to be prepared to battle all three of them at the same time.   Also, I recommend that you inform the party about the potential ambush, so they can be prepared as well. It's always better to be safe than sorry, especially when traveling through areas with known monster activity.  If you have any more questions or need further assistance, don't hesitate to ask. Good luck on your quest, and I hope you return safely.",
-            "functions": []
+            "response": "I'm glad to hear that! Would you like to proceed with this quest right now, or would you prefer some time to prepare?",
+            "functions": [
+                {
+                    "name": "select",
+                    "parameters": {
+                        "quest_name": [
+                            "Commercial Escort"
+                        ]
+                    },
+                    "return": []
+                }
+            ]
         },
         "turn_6": {
-            "response": "I'll get the necessary documents ready for you. Please, head to the guild's bulletin board to check the details of the quest. You'll find the information on the Commercial Escort quest there. Once you're ready, come back to me and I'll give you the quest details and any necessary items.",
+            "response": "Sure!  Thank you for stopping by and trusting me. Good luck on your quest! Take care, and stay safe!",
             "functions": [
                 {
                     "name": "start",
                     "parameters": {
-                        "quest_name": "Collecting Medical Herbs"
-                    }
+                        "quest_name": "Commercial Escort"
+                    },
+                    "return": []
                 }
             ]
         }

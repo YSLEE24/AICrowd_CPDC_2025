@@ -1,5 +1,6 @@
 import copy
 from collections import Counter
+import re
 
 class Executor: 
     """
@@ -14,7 +15,7 @@ class Executor:
                However, in real evaluations, the executor will return adequate values even though it is not an exact match with gold functions. 
             2. Please do not try to tamper with attributes in the Executor. Doing so will lead to errors. 
     """
-    def __init__(self, tool_registry, action_registry, gold_functions, threshold):
+    def __init__(self, tool_registry, action_registry, gold_functions, threshold=0.4):
         self.function_call_stats = []
         self.tool_registry = tool_registry
         self.action_registry = action_registry
@@ -37,7 +38,7 @@ class Executor:
                 # matches, we return the gold return value
                 func_item['return'] = copy.deepcopy(self.gold_functions[gold_func_index]['return'])
             else:
-                func_item['return'] = []
+                func_item['return'] = [{'information': 'n/a'}]
             
         return copy_functions
     
@@ -63,7 +64,8 @@ class Executor:
                         if gold_function_param_value_list == generated_func_param_value_list:
                             return i 
                 elif 'search' in func_item['name']:
-                    return self.search_function_match(func_item['parameters'], gold_function)
+                    if self.search_function_match(func_item['parameters'], gold_function):
+                        return i
 
         return -1
     
@@ -129,16 +131,15 @@ class Executor:
         # exact match of exact arguments
         exact_check = word_f1(pred_exact_info, gold_exact_info)
         if exact_check != 1.0:
-            return [{"information": "n/a"}]
+            return False
 
         ret = []
         judgment_score = word_f1(pred_info, gold_info)
         if judgment_score > self.threshold:
-            ret = gold_response_list
+            return True
         else:
-            ret.append({"information": "n/a"})
+            return False
 
-        return ret
 
 
 
