@@ -75,7 +75,7 @@ Please refer to [local_run_task1.py](local_run_task1.py) and [local_run_task2.py
 
 # ✍️ How to write your own agent?
 
-In `agents/test_agent.py` we implement a simple baseline that directly calls LLaMA-3.1-8B-Instruct modess to generate the function calls and the responses. You can run it as follows: 
+In `agents/test_agent.py` we implement a simple baseline that directly calls LLaMA-3.1-8B-Instruct model to generate the function calls and the responses. You can run it as follows: 
 
 ```
 pip install -r requirements.txt
@@ -87,9 +87,7 @@ python3 local_run_task2.py
 
 If you want to try your own agent, follow these steps: 
 - Put everything you need (including model weights---you won't have access to the Internet during evaluation) in `agents/`. 
-- Implement a class `MyAgent` in `agents/my_agent.py` that has the following two methods: 
-    - `generate_functions_and_responses()`, which will be called for Task 1. 
-    - `generate_responses()`, which will be called for Task 2. 
+- Implement a class `MyAgent` in `agents/my_agent.py` that has the method `generate_functions_and_responses()`, which will be called for both Task 1 and Task 2. 
 - In `agents/user_config.py`, set `UserAgent = MyAgent(...)`. 
 
 Please follow the instructions in [agents/README.md](agents/README.md) for instructions and examples on how to write your own agents for this competition.
