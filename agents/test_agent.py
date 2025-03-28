@@ -65,15 +65,13 @@ argument name: xxx, value: xxx
                 additional_info = "parameter name: name, value: " + info["name"]
             else:
                 additional_info = additional_info + "\nargument name: name, value: " + info["name"]
-        # TODO: Why sometimes 'argument name' and sometimes 'parameter name'? 
+
         input_text = dialogue[-1]["text"]
         prompt = base_prompt.format(function_information_agg, additional_info)
         messages = []
         messages.append({"role":"system", "content":prompt})
         messages.append({"role":"user", "content":input_text})
-        # print("PROMPT: ")
-        # print(prompt)
-        # print('=' * 40)
+
         return messages
 
     def _create_messages_for_dialogue(self, worldview, persona, role, knowledge, state, dialogue, function_results):
