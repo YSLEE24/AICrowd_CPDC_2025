@@ -63,7 +63,13 @@ Remember,
 
 ## Submitting to Different Tasks
 
-Specify the task by setting the appropriate `challenge_id` in your [aicrowd.json](aicrowd.json). Here are the challenge IDs for various tasks:
+Specify the task by setting the appropriate `challenge_id` in your [aicrowd.json](aicrowd.json). Here are the challenge IDs for the three tasks in this challenge:
+
+| Task          |      `challenge_id`|
+|---------------|-----------------|
+| Task 1: Task-Oriented Dialogue | `"task-oriented-dialogue-task-1"`| 
+| Task 2: Context-Aware Dialogue | `"context-aware-dialogue-task-2"`|
+| Task 3: Integrating Contextual Dialogue and Task Execution | `"integrating-contextual-dialogue-and-task-execution-hybrid"`|
 
 
 
