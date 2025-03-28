@@ -34,7 +34,7 @@ Use the following steps to perform function's estimation.
 2. Make the arguments needed by the function as appropriate.
 The format of the output is:
 function name: xxx
-argument name: xxx, vlaue: xxx
+argument name: xxx, value: xxx
 
 ## Function Information
 {}
