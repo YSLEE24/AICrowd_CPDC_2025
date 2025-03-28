@@ -9,11 +9,7 @@ This document is designed to assist you in making your initial submission smooth
 3. [Submitting to Different Tasks](#submitting-to-different-tasks)
 4. [Submission Entry Point](#submission-entry-point)
 5. [Setting Up SSH Keys](#setting-up-ssh-keys)
-6. [Managing Large Model Files with Git LFS](#managing-large-model-files-with-git-lfs)
-    - [Why Use Git LFS?](#why-use-git-lfs)
-    - [Steps to Use Git LFS](#steps-to-use-git-lfs)
-    - [Handling Previously Committed Large Files](#handling-previously-committed-large-files)
-7. [How to Submit Your Code](#how-to-submit-your-code)
+6. [How to Submit Your Code](#how-to-submit-your-code)
 
 
 ## Specifying Software Runtime and Dependencies
@@ -67,7 +63,7 @@ Remember,
 
 ## Submitting to Different Tasks
 
-Specify the taskk by setting the appropriate `challenge_id` in your [aicrowd.json](aicrowd.json). Here are the challenge IDs for various tasks:
+Specify the task by setting the appropriate `challenge_id` in your [aicrowd.json](aicrowd.json). Here are the challenge IDs for various tasks:
 
 
 
