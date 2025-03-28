@@ -6,7 +6,7 @@ This document is designed to assist you in making your initial submission smooth
 
 1. [Specifying Software Runtime and Dependencies](#specifying-software-runtime-and-dependencies)
 2. [Code Structure Guidelines](#code-structure-guidelines)
-3. [Submitting to Different Tracks](#submitting-to-different-tracks)
+3. [Submitting to Different Tasks](#submitting-to-different-tasks)
 4. [Submission Entry Point](#submission-entry-point)
 5. [Setting Up SSH Keys](#setting-up-ssh-keys)
 6. [Managing Large Model Files with Git LFS](#managing-large-model-files-with-git-lfs)
@@ -65,17 +65,11 @@ Remember,
 - **your submission metadata JSON (`aicrowd.json`)** is crucial for mapping your submission to the challenge. Ensure it contains the correct `challenge_id`, `authors`, and other necessary information. **To utilize GPUs, set the `"gpu": true` flag in your `aicrowd.json`.**
 - The entire `function_call_langchain` directory will be overwritten during actual evaluation. All local modifications will be lost. DO NOT TAMPER WITH. 
 
-## Submitting to Different Tracks
+## Submitting to Different Tasks
 
-Specify the track by setting the appropriate `challenge_id` in your [aicrowd.json](aicrowd.json). Here are the challenge IDs for various tracks:
+Specify the taskk by setting the appropriate `challenge_id` in your [aicrowd.json](aicrowd.json). Here are the challenge IDs for various tasks:
 
-| Track Name                        | Challenge ID                                        |
-|-----------------------------------|-----------------------------------------------------|
-| Understanding Shopping Concepts   | `amazon-kdd-cup-24-understanding-shopping-concepts` |
-| Shopping Knowledge Reasoning      | `amazon-kdd-cup-24-shopping-knowledge-reasoning`    |
-| User Behavior Alignment           | `amazon-kdd-cup-24-user-behavior-alignment`         |
-| Multi-Lingual Abilities           | `amazon-kdd-cup-24-multi-lingual-abilities`         |
-| All-Around                        | `amazon-kdd-cup-24-all-around`                      |
+
 
 ## Submission Entry Point
 
@@ -83,41 +77,8 @@ The evaluation process will instantiate an agent from `agent/user_config.py` for
 
 ## Setting Up SSH Keys
 
-You will have to add your SSH Keys to your GitLab account by going to your profile settings [here](https://gitlab.aicrowd.com/profile/keys). If you do not have SSH Keys, you will first need to [generate one](https://docs.gitlab.com/ee/ssh/README.html#generating-a-new-ssh-key-pair).
+You will have to add your SSH Keys to your GitLab account by going to your profile settings [here](https://gitlab.aicrowd.com/-/user_settings/ssh_keys). If you do not have SSH Keys, you will first need to [generate one](https://docs.gitlab.com/ee/ssh/README.html#generating-a-new-ssh-key-pair).
 
-
-## Managing Large Model Files with Git LFS
-
-When preparing your submission, it's crucial to ensure all necessary models and files required by your inference code are properly saved and included. Due to the potentially large size of model weight files, we highly recommend using Git Large File Storage (Git LFS) to manage these files efficiently.
-
-### Why Use Git LFS?
-
-Git LFS is designed to handle large files more effectively than Git's default handling of large files. This ensures smoother operations and avoids common errors associated with large files, such as:
-
-- `fatal: the remote end hung up unexpectedly`
-- `remote: fatal: pack exceeds maximum allowed size`
-
-These errors typically occur when large files are directly checked into the Git repository without Git LFS, leading to challenges in handling and transferring those files.
-
-### Steps to Use Git LFS
-
-1. **Install Git LFS**: If you haven't already, install Git LFS on your machine. Detailed instructions can be found [here](https://git-lfs.github.com/).
-
-2. **Track Large Files**: Use Git LFS to track the large files within your project. You can do this by running `git lfs track "*.model"` (replace `*.model` with your file type).
-
-3. **Add and Commit**: After tracking the large files with Git LFS, add and commit them as you would with any other file. Git LFS will automatically handle these files differently to optimize their storage and transfer.
-
-4. **Push to Repository**: When you push your changes to the repository, Git LFS will manage the large files, ensuring a smooth push process.
-
-### Handling Previously Committed Large Files
-
-If you have already committed large files directly to your Git repository without using Git LFS, you may encounter issues. These files, even if not present in the current working directory, could still be in the Git history, leading to errors.
-
-To resolve this, ensure that the large files are removed from the Git history and then re-add and commit them using Git LFS. This process cleans up the repository's history and avoids the aforementioned errors.
-
-For more information on how to upload large files to your submission and detailed guidance on using Git LFS, please refer to [this detailed guide](https://discourse.aicrowd.com/t/how-to-upload-large-files-size-to-your-submission/2304).
-
-**Note**: Properly managing large files not only facilitates smoother operations for you but also ensures that the evaluation process can proceed without hindrances.
 
 ## How to Submit Your Code
 
@@ -129,6 +90,6 @@ Assuming, you have cloned the repo already by following the instructions [here](
 2. Tag your submission (e.g., `git tag -am "submission-v0.1" submission-v0.1`).
 3. Push your changes and tags to the AIcrowd repository (e.g. `git push origin submission-v0.1`)
 
-After pushing your tag, you can view your submission details at `https://gitlab.aicrowd.com/<YOUR-AICROWD-USER-NAME>/amazon-kdd-cup-2024-starter-kit/issues`. It may take about **30 minutes** for each submission to build and begin evaluation, so please be patient. 
+After pushing your tag, you can view your submission details at `https://gitlab.aicrowd.com/<YOUR-AICROWD-USER-NAME>/<YOUR-REPO>/issues`. It may take about **30 minutes** for each submission to build and begin evaluation, so please be patient. 
 
 Ensure your `aicrowd.json` is correctly filled with the necessary metadata, and you've replaced `<YOUR-AICROWD-USER-NAME>` with your GitLab username in the provided URL.
