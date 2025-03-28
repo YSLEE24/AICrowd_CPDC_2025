@@ -172,32 +172,7 @@
                     },
                     "return": [
                         {
-                            "item_type": "Single-Handed Sword",
-                            "reason": ""
-                        },
-                        {
-                            "item_type": "Double-Handed Sword",
-                            "reason": ""
-                        },
-                        {
-                            "item_type": "Axe",
-                            "reason": ""
-                        },
-                        {
-                            "item_type": "Spear",
-                            "reason": ""
-                        },
-                        {
-                            "item_type": "Bow",
-                            "reason": ""
-                        },
-                        {
-                            "item_type": "Whip",
-                            "reason": ""
-                        },
-                        {
-                            "item_type": "Blunt Weapon",
-                            "reason": ""
+                            "information": "many"
                         }
                     ]
                 }
