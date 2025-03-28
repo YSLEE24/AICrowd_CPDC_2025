@@ -67,8 +67,8 @@ To avoid overfitting the metrics, we will not disclose the exact metrics used to
 Please refer to [local_run_task1.py](local_run_task1.py) and [local_run_task2.py](local_run_task2.py) for details on how we will run your system to get responses. 
 
 # 🏁 Getting Started
-1. **Sign up** to join the competition [on the AIcrowd website](https://www.aicrowd.com/).
-2. **Fork** this starter kit repository. You can use [this link](https://gitlab.aicrowd.com/) to create a fork.
+1. **Sign up** to join the competition [on the AIcrowd website](https://www.aicrowd.com/challenges/commonsense-persona-grounded-dialogue-challenge-2025).
+2. **Fork** this starter kit repository. You can use [this link](https://gitlab.aicrowd.com/aicrowd/challenges/sony-commonsense-persona-grounded-dialogue-challenge-2025/starter-kit-sony/-/forks/new) to create a fork.
 3. **Clone** your forked repo and start developing your agent.
 4. **Develop** your agent(s) following the template in [how to write your own agent](#how-to-write-your-own-agent) section.
 5. [**Submit**](#-how-to-make-a-submission) your trained models to [AIcrowd Gitlab](https://gitlab.aicrowd.com) for evaluation [(full instructions below)](#-how-to-make-a-submission). The automated evaluation setup will evaluate the submissions on the private datasets and report the metrics on the leaderboard of the competition.
@@ -100,15 +100,15 @@ Please follow the instructions in [agents/README.md](agents/README.md) for instr
 
 1. **Add your SSH key** to AIcrowd GitLab
 
-You can add your SSH Keys to your GitLab account by going to your profile settings [here](https://gitlab.aicrowd.com/-/profile/keys). If you do not have SSH Keys, you will first need to [generate one](https://docs.gitlab.com/ee/user/ssh.html).
+You can add your SSH Keys to your GitLab account by going to your profile settings [here](https://gitlab.aicrowd.com/-/user_settings/ssh_keys). If you do not have SSH Keys, you will first need to [generate one](https://docs.gitlab.com/ee/user/ssh.html).
 
-2. **Fork the repository**. You can use [this link](https://gitlab.aicrowd.com/) to create a fork.
+2. **Fork the repository**. You can use [this link](https://gitlab.aicrowd.com/aicrowd/challenges/sony-commonsense-persona-grounded-dialogue-challenge-2025/starter-kit-sony/-/forks/new) to create a fork.
 
 3.  **Clone the repository**
 
     ```bash
-    git clone git@gitlab.aicrowd.com:<YOUR-AICROWD-USER-NAME>/<placeholder>.git
-    cd <placeholder>
+    git clone git@gitlab.aicrowd.com:<YOUR-AICROWD-USER-NAME>/starter-kit-sony.git
+    cd starter-kit-sony
     ```
 
 4. **Install** competition specific dependencies!
@@ -120,7 +120,7 @@ You can add your SSH Keys to your GitLab account by going to your profile settin
 
 6. Test your agent locally using `python local_run_task*.py`.
 
-7. Accept the Challenge Rules on the main [challenge page](https://www.aicrowd.com/) by clicking on the **Participate** button. Also accept the Challenge Rules on the Task specific page (link on the challenge page) that you want to submit to.
+7. Accept the Challenge Rules on the main [challenge page](https://www.aicrowd.com/challenges/commonsense-persona-grounded-dialogue-challenge-2025) by clicking on the **Participate** button. Also accept the Challenge Rules on the Task specific page (link on the challenge page) that you want to submit to.
 
 8. Make a submission as described in [How to make a submission](#-how-to-make-a-submission) section.
 
@@ -144,8 +144,8 @@ This starter kit can be used to submit to any of the tracks. You can find more i
 
 # 📎 Important links
 
-- 💪 Challenge Page: <placeholder>
-- 🗣 Discussion Forum: <placeholder>
-- 🏆 Leaderboard: <placeholder>
+- 💪 Challenge Page: https://www.aicrowd.com/challenges/commonsense-persona-grounded-dialogue-challenge-2025
+- 🗣 Discussion Forum: https://www.aicrowd.com/challenges/commonsense-persona-grounded-dialogue-challenge-2025/discussion
+- 🏆 Leaderboard: https://www.aicrowd.com/challenges/commonsense-persona-grounded-dialogue-challenge-2025/leaderboards
 
 
