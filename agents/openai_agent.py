@@ -3,14 +3,12 @@ import copy
 import os
 from openai import OpenAI
 import json
-# comment out that line before pushing. 
 
 
 class OpenAIAgent(object):
     def __init__(self):
         """Initialize an openai agent"""
         self.client = OpenAI(
-            # This is the default and can be omitted
             api_key=os.environ.get("OPENAI_API_KEY"),
         )
 
@@ -142,7 +140,6 @@ class OpenAIAgent(object):
                 else:
                     break 
             cur_action['description'] = ' '.join(desc_lines)
-            # print(cur_action['description'])
 
             while 1:
                 if 'Parameters' in docstring_lines[line_idx]: 
@@ -242,8 +239,6 @@ Use the following character settings and knowledge to create your response.
                 else:
                     knowledge_setting = knowledge_setting + ", " + arg + ": " + str(f_result["parameters"][arg])
             for item in f_result["return"]:
-                if f_result['name'] == 'sell':
-                    print(f_result['return'])
                 for key in item:
                     if knowledge_setting == "":
                         knowledge_setting = key + ": " + item[key]
@@ -322,7 +317,6 @@ Use the following character settings and knowledge to create your response.
             })
         # obtain results 
         function_results = executor.execute(all_functions)
-        print(function_results)
 
 
         # then generate response
