@@ -103,10 +103,6 @@ if __name__ == '__main__':
             cur_conv_responses[f'turn_{turn_idx}'] = {}
             cur_conv_responses[f'turn_{turn_idx}']['response'] = response
             cur_conv_responses[f'turn_{turn_idx}']['functions'] = copy.deepcopy(cur_turn_exec.function_call_stats)
-            print(f"cur_conv_functions['turn_{turn_idx}']")
-            print(cur_conv_responses[f'turn_{turn_idx}'])
-            print('converation', conv_idx, 'turn', turn_idx)
-            print('=' * 40, '\n')
         generated_responses.append(cur_conv_responses)
     
     with open(args.save_path, 'w') as f:
