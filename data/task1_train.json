@@ -1381,11 +1381,11 @@
                     "return": [
                         {
                             "item_name": "Two-Handed Sword",
-                            "reason": ""
+                            "reason": "Its type is Double-Handed Sword."
                         },
                         {
                             "item_name": "Zwei Hander",
-                            "reason": ""
+                            "reason": "Its type is Double-Handed Sword."
                         }
                     ]
                 }
@@ -2715,15 +2715,15 @@
                     "return": [
                         {
                             "item_name": "Dragon Cutter",
-                            "reason": "Its price is 7000 Gold."
+                            "reason": "Its price is 7000 Gold. Its type is Single-Handed Sword."
                         },
                         {
                             "item_name": "Demonic Sword",
-                            "reason": "Its price is 7500 Gold."
+                            "reason": "Its price is 7500 Gold. Its type is Single-Handed Sword."
                         },
                         {
                             "item_name": "Zwei Hander",
-                            "reason": "Its price is 9000 Gold."
+                            "reason": "Its price is 9000 Gold. Its type is Double-Handed Sword."
                         }
                     ]
                 }
@@ -4108,15 +4108,15 @@
                     "return": [
                         {
                             "item_name": "Long Sword",
-                            "reason": "Its attack is 20."
+                            "reason": "Its attack is 20. Its type is Single-Handed Sword."
                         },
                         {
                             "item_name": "Dragon Cutter",
-                            "reason": "Its attack is 70."
+                            "reason": "Its attack is 70. Its type is Single-Handed Sword."
                         },
                         {
                             "item_name": "Demonic Sword",
-                            "reason": "Its attack is 75."
+                            "reason": "Its attack is 75. Its type is Single-Handed Sword."
                         }
                     ]
                 }
@@ -4653,11 +4653,11 @@
                     "return": [
                         {
                             "item_name": "Light-Weight Durable Knife",
-                            "reason": "Its price is 10 Gold. This knife can be folded."
+                            "reason": "Its price is 10 Gold. Its type is Single-Handed Sword. This knife can be folded."
                         },
                         {
                             "item_name": "Man Gauche",
-                            "reason": "Its price is 100 Gold. This is straightforward but efficient."
+                            "reason": "Its price is 100 Gold. Its type is Single-Handed Sword. This is straightforward but efficient."
                         }
                     ]
                 }
@@ -4792,11 +4792,11 @@
                     "return": [
                         {
                             "item_name": "Short Sword",
-                            "reason": "Its price is 300 Gold. Its attack is 15."
+                            "reason": "Its price is 300 Gold. Its attack is 15. Its type is Single-Handed Sword."
                         },
                         {
                             "item_name": "Long Sword",
-                            "reason": "Its price is 400 Gold. Its attack is 20."
+                            "reason": "Its price is 400 Gold. Its attack is 20. Its type is Single-Handed Sword."
                         }
                     ]
                 }
@@ -6104,7 +6104,7 @@
                     "return": [
                         {
                             "item_name": "Light-Weight Durable Knife",
-                            "reason": "Its price is 10 Gold. This is a lightweight and fast defensive tool. It's small and portable, ideal for self-defense."
+                            "reason": "Its price is 10 Gold. Its type is Single-Handed Sword. This is a lightweight and fast defensive tool. It's small and portable, ideal for self-defense."
                         }
                     ]
                 }
@@ -6153,11 +6153,11 @@
                     "return": [
                         {
                             "item_name": "Short Sword",
-                            "reason": "Its price is 300 Gold."
+                            "reason": "Its price is 300 Gold. Its type is Single-Handed Sword."
                         },
                         {
                             "item_name": "Long Sword",
-                            "reason": "Its price is 400 Gold."
+                            "reason": "Its price is 400 Gold. Its type is Single-Handed Sword."
                         }
                     ]
                 }
@@ -6366,7 +6366,7 @@
                     "return": [
                         {
                             "item_name": "Man Gauche",
-                            "reason": "Its price is 100 Gold. This is a highly manageable dagger. It's swift and lightweight, making it excellent for both attack and defense."
+                            "reason": "Its price is 100 Gold. Its type is Single-Handed Sword. This is a highly manageable dagger. It's swift and lightweight, making it excellent for both attack and defense."
                         }
                     ]
                 }
@@ -6942,11 +6942,11 @@
                     "return": [
                         {
                             "item_name": "Light-Weight Durable Knife",
-                            "reason": "Its price is 10 Gold. This is a short-bladed dagger, ideal for rapid attacks. Recommended for those who prioritize speed and agility."
+                            "reason": "Its price is 10 Gold. Its type is Single-Handed Sword. This is a short-bladed dagger, ideal for rapid attacks. Recommended for those who prioritize speed and agility."
                         },
                         {
                             "item_name": "Man Gauche",
-                            "reason": "Its price is 100 Gold. This is a dagger with a short blade, suitable for swift attacks. Ideal for those focusing on speed and agility."
+                            "reason": "Its price is 100 Gold. Its type is Single-Handed Sword. This is a dagger with a short blade, suitable for swift attacks. Ideal for those focusing on speed and agility."
                         }
                     ]
                 }
@@ -7045,11 +7045,11 @@
                     "return": [
                         {
                             "item_name": "Short Sword",
-                            "reason": "Its price is 300 Gold. This is a reliable option with moderate blade length, offering slightly extended reach."
+                            "reason": "Its price is 300 Gold. Its type is Single-Handed Sword. This is a reliable option with moderate blade length, offering slightly extended reach."
                         },
                         {
                             "item_name": "Long Sword",
-                            "reason": "Its price is 400 Gold. This is a dependable option with good blade length, providing extra reach."
+                            "reason": "Its price is 400 Gold. Its type is Single-Handed Sword. This is a dependable option with good blade length, providing extra reach."
                         }
                     ]
                 }
@@ -7871,15 +7871,15 @@
                     "return": [
                         {
                             "item_name": "Short Sword",
-                            "reason": "Its price is 300 Gold."
+                            "reason": "Its price is 300 Gold. Its type is Single-Handed Sword."
                         },
                         {
                             "item_name": "Long Sword",
-                            "reason": "Its price is 400 Gold."
+                            "reason": "Its price is 400 Gold. Its type is Single-Handed Sword."
                         },
                         {
                             "item_name": "Two-Handed Sword",
-                            "reason": "Its price is 1200 Gold."
+                            "reason": "Its price is 1200 Gold. Its type is Double-Handed Sword."
                         }
                     ]
                 }
@@ -8420,15 +8420,15 @@
                     "return": [
                         {
                             "item_name": "Lance",
-                            "reason": "Its price is 300 Gold."
+                            "reason": "Its price is 300 Gold. Its type is Spear."
                         },
                         {
                             "item_name": "Trident",
-                            "reason": "Its price is 1000 Gold."
+                            "reason": "Its price is 1000 Gold. Its type is Spear."
                         },
                         {
                             "item_name": "Zephyr",
-                            "reason": "Its price is 10000 Gold."
+                            "reason": "Its price is 10000 Gold. Its type is Spear."
                         }
                     ]
                 }
@@ -8753,7 +8753,7 @@
                     "return": [
                         {
                             "item_name": "Trident",
-                            "reason": "Its price is 1000 Gold."
+                            "reason": "Its price is 1000 Gold. Its type is Spear."
                         }
                     ]
                 }
@@ -9236,11 +9236,11 @@
                     "return": [
                         {
                             "item_name": "Morning Star",
-                            "reason": "Its price is 300 Gold."
+                            "reason": "Its price is 300 Gold. Its type is Blunt Weapon."
                         },
                         {
                             "item_name": "Bloody Saint Cross",
-                            "reason": "Its price is 9000 Gold."
+                            "reason": "Its price is 9000 Gold. Its type is Blunt Weapon."
                         }
                     ]
                 }
@@ -10541,15 +10541,15 @@
                     "return": [
                         {
                             "item_name": "Man Gauche",
-                            "reason": "Its price is 100 Gold."
+                            "reason": "Its price is 100 Gold. Its type is Single-Handed Sword."
                         },
                         {
                             "item_name": "Short Sword",
-                            "reason": "Its price is 300 Gold."
+                            "reason": "Its price is 300 Gold. Its type is Single-Handed Sword."
                         },
                         {
                             "item_name": "Long Sword",
-                            "reason": "Its price is 400 Gold."
+                            "reason": "Its price is 400 Gold. Its type is Single-Handed Sword."
                         }
                     ]
                 }
@@ -11082,11 +11082,11 @@
                     "return": [
                         {
                             "item_name": "Battle Axe",
-                            "reason": "Its price is 400 Gold."
+                            "reason": "Its price is 400 Gold. Its type is Axe."
                         },
                         {
                             "item_name": "War Hammer",
-                            "reason": "Its price is 450 Gold."
+                            "reason": "Its price is 450 Gold. Its type is Axe."
                         }
                     ]
                 }
@@ -11893,11 +11893,11 @@
                     "return": [
                         {
                             "item_name": "Two-Handed Sword",
-                            "reason": ""
+                            "reason": "Its type is Double-Handed Sword. "
                         },
                         {
                             "item_name": "Zwei Hander",
-                            "reason": ""
+                            "reason": "Its type is Double-Handed Sword. "
                         }
                     ]
                 }
@@ -12435,11 +12435,11 @@
                     "return": [
                         {
                             "item_name": "Short Sword",
-                            "reason": "Its price is 300 Gold. Its attack is 15."
+                            "reason": "Its price is 300 Gold. Its attack is 15. Its type is Single-Handed Sword."
                         },
                         {
                             "item_name": "Man Gauche",
-                            "reason": "Its price is 100 Gold. Its attack is 10."
+                            "reason": "Its price is 100 Gold. Its attack is 10. Its type is Single-Handed Sword."
                         }
                     ]
                 }
