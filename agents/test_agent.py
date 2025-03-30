@@ -7,7 +7,7 @@ import copy
 class TestResponseAgent(object):
     def __init__(self):
         model_path = 'meta-llama/Llama-3.1-8B-Instruct'
-        self.model = AutoModelForCausalLM.from_pretrained(model_path, device_map='auto')
+        self.model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.bfloat16, device_map='auto')
         self.tokenizer = AutoTokenizer.from_pretrained(model_path)
         if self.tokenizer.pad_token_id is None:
             self.tokenizer.pad_token_id = self.tokenizer.eos_token_id
@@ -18,7 +18,7 @@ class TestResponseAgent(object):
         ]
 
         self.max_seq_len = 2048
-        self.max_gen_len = 1000
+        self.max_gen_len = 50
     
     def _create_messages_for_function(self, tool_functions, action_functions, dialogue):
         """
