@@ -51,23 +51,6 @@ def search_item(item_name: str, item_price: str, item_type: str, item_attack: st
     """
     pass
 
-@tool
-def check_inventory(item_name: str) -> List[Dict[str, str]]:
-    """
-    Check the availability for a specified weapon(e.g. Avis Wind, Short Sword, etc.)
-
-    Parameters:
-    ----------
-    item_name : str
-        Specified weapon name (e.g. Avis Wind, Short Sword, etc.). Uses the weapon name mentioned in the conversation.
-
-    Returns:
-    -------
-    List[Dict[str, str]]
-        Outputs the abailable weapon (e.g. Avis Wind, Short Sword, etc.).
-
-    """
-    pass
 
 @tool
 def check_basic_info(item_name: str) -> List[Dict[str, str]]:
@@ -167,7 +150,7 @@ def check_description(item_name: str) -> List[Dict[str, str]]:
     pass
 
 
-all_functions = [search_item, check_inventory, check_basic_info, check_price, check_type, check_attack, check_description]
+all_functions = [search_item, check_basic_info, check_price, check_type, check_attack, check_description]
 tool_functions_0001 = {'function_registry': {
     f.name: {
         'name': f.name, 

@@ -46,24 +46,6 @@ def search_quest(quest_name: str, quest_level: str, quest_duration: str, quest_r
     pass
     
 
-@tool
-def check_inventory(quest_name: str) -> List[Dict[str, str]]:
-    """
-    Check the availability of a specified quest(e.g. Collecting Medical Herbs, Collecting Dragon Teardrops , etc.).
-
-    Parameters:
-    ----------
-    quest_name : str
-        Specified quest name (e.g. Collecting Medical Herbs, Collecting Dragon Teardrops, etc.). Uses the quest name mentioned in the conversation. 
-
-    Returns:
-    -------
-    List[Dict[str, str]]
-        Outputs the abailable  quest(e.g. Collecting Medical Herbs, Collecting Dragon Teardrops , etc.).
-    """
-
-    pass
-
 @tool 
 def check_basic_info(quest_name: str) -> List[Dict[str, str]]:
     """
@@ -155,7 +137,7 @@ def check_description(quest_name: str) -> List[Dict[str, str]]:
 
     pass
 
-all_functions = [search_quest, check_inventory, check_basic_info, check_level, check_duration, check_reward, check_description]
+all_functions = [search_quest, check_basic_info, check_level, check_duration, check_reward, check_description]
 tool_functions_0005 = {'function_registry': {
     f.name: {
         'name': f.name, 
