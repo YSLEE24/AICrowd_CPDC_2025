@@ -847,9 +847,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Commercial Escort"
-                        ]
+                        "quest_name": "Commercial Escort"
                     },
                     "return": []
                 }
