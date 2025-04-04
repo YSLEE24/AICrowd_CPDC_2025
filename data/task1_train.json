@@ -13960,9 +13960,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Commercial Escort"
-                        ]
+                        "quest_name": "Commercial Escort"
                     },
                     "return": []
                 }
@@ -14390,9 +14388,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Hunting Down the Desert Tiger"
-                        ]
+                        "quest_name": "Hunting Down the Desert Tiger"
                     },
                     "return": []
                 }
@@ -15170,9 +15166,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Exterminating the Giant Rats"
-                        ]
+                        "quest_name": "Exterminating the Giant Rats"
                     },
                     "return": []
                 }
@@ -15626,9 +15620,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Exterminating the Giant Rats"
-                        ]
+                        "quest_name": "Exterminating the Giant Rats"
                     },
                     "return": []
                 }
@@ -16224,9 +16216,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Investigating an Abandoned Building"
-                        ]
+                        "quest_name": "Investigating an Abandoned Building"
                     },
                     "return": []
                 }
@@ -16673,9 +16663,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Hunting Down the Desert Tiger"
-                        ]
+                        "quest_name": "Hunting Down the Desert Tiger"
                     },
                     "return": []
                 }
@@ -17410,9 +17398,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Investigating an Abandoned Building"
-                        ]
+                        "quest_name": "Investigating an Abandoned Building"
                     },
                     "return": []
                 }
@@ -17872,9 +17858,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Investigating an Abandoned Building"
-                        ]
+                        "quest_name": "Investigating an Abandoned Building"
                     },
                     "return": []
                 }
@@ -18228,9 +18212,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Collecting Medical Herbs"
-                        ]
+                        "quest_name": "Collecting Medical Herbs"
                     },
                     "return": []
                 }
@@ -18932,9 +18914,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Hunting Down the Desert Tiger"
-                        ]
+                        "quest_name": "Hunting Down the Desert Tiger"
                     },
                     "return": []
                 }
@@ -19402,9 +19382,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Exterminating the Giant Rats"
-                        ]
+                        "quest_name": "Exterminating the Giant Rats"
                     },
                     "return": []
                 }
@@ -20095,9 +20073,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Hunting Down the Desert Tiger"
-                        ]
+                        "quest_name": "Hunting Down the Desert Tiger"
                     },
                     "return": []
                 }
@@ -20569,9 +20545,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Collecting Dragon Teardrops"
-                        ]
+                        "quest_name": "Collecting Dragon Teardrops"
                     },
                     "return": []
                 }
@@ -21423,9 +21397,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Hunting Down the Desert Tiger"
-                        ]
+                        "quest_name": "Hunting Down the Desert Tiger"
                     },
                     "return": []
                 }
@@ -21900,9 +21872,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Commercial Escort"
-                        ]
+                        "quest_name": "Commercial Escort"
                     },
                     "return": []
                 }
@@ -22515,9 +22485,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Exterminating the Giant Rats"
-                        ]
+                        "quest_name": "Exterminating the Giant Rats"
                     },
                     "return": []
                 }
@@ -22954,9 +22922,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Investigating an Abandoned Building"
-                        ]
+                        "quest_name": "Investigating an Abandoned Building"
                     },
                     "return": []
                 }
@@ -23698,9 +23664,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Collecting Medical Herbs"
-                        ]
+                        "quest_name": "Collecting Medical Herbs"
                     },
                     "return": []
                 }
@@ -24034,9 +23998,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Collecting Medical Herbs"
-                        ]
+                        "quest_name": "Collecting Medical Herbs"
                     },
                     "return": []
                 }
@@ -24460,9 +24422,7 @@
                 {
                     "name": "select",
                     "parameters": {
-                        "quest_name": [
-                            "Commercial Escort"
-                        ]
+                        "quest_name": "Commercial Escort"
                     },
                     "return": []
                 }
