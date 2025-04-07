@@ -38,13 +38,13 @@ How can we make NPCs feel real? This challenge pushes the boundaries of AI-drive
 
 This year, the challenge consists of three tasks:
 
-- Task 1: Task-Oriented Dialogue Response Generation
-- Task 2: Commonsense Dialogue Response Generation
-- Task 3: A hybrid of Task 1 and Task 2, evaluating whether both objectives can be achieved simultaneously with a single agent
+- **Task 1**: Task-Oriented Dialogue Response Generation
+- **Task 2**: Commonsense Dialogue Response Generation
+- **Task 3**: A hybrid of Task 1 and Task 2, evaluating whether both objectives can be achieved simultaneously with a single agent
 
 # Dataset
 We provide two dataset splits: 
-- `data/test_evaluation_format_task*.json`: They are minimal data splits mainly for debugging. 
+- `data/test*_sample.json`: They are minimal data splits mainly for debugging. 
 - `data/task*_train.json`: They serve as training data for the challenge. 
 
 Each `.json` file contains several multi-turn conversations between a player and an NPC in a game environment. Each conversation has its unique worldviews, settings, player and NPC persona, etc. 
