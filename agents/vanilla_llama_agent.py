@@ -4,7 +4,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 import copy
 
-class TestResponseAgent(object):
+class VanillaLlamaAgent(object):
     def __init__(self):
         model_path = 'meta-llama/Llama-3.1-8B-Instruct'
         self.model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.bfloat16, device_map='auto')

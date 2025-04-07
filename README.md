@@ -76,7 +76,7 @@ Please refer to [local_run_task1.py](local_run_task1.py) and [local_run_task2.py
 
 # ✍️ How to write your own agent?
 
-In `agents/test_agent.py` we implement a simple baseline that directly calls LLaMA-3.1-8B-Instruct model to generate the function calls and the responses. You can run it as follows: 
+In `agents/vanilla_llama_agent.py` we implement a simple baseline that directly calls [LLaMA-3.1-8B-Instruct model](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct) to generate the function calls and the responses. You can run it as follows: 
 
 ```
 pip install -r requirements.txt

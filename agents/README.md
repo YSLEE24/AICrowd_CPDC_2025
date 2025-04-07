@@ -4,7 +4,7 @@
 For a streamlined experience, we suggest placing the code for all your agents within the `agent` directory. This is a recommendation for organizational purposes, but it's not a strict requirement.
 
 ## Agent Class
-We provide an example agent, `test_agent.py`, to illustrate how you might structure your own agent. Crucially, your agent class must implement the `generate_functions_and_responses` method.
+We provide an example agent, `vanilla_llama_agent.py`, to illustrate how you might structure your own agent. Crucially, your agent class must implement the `generate_functions_and_responses` method.
 
 ## Configuring Your Agent
 To ensure your agent is recognized and utilized correctly, please specify your agent class name in the [`user_config.py`](user_config.py) file, by following the instructions in the inline comments.
