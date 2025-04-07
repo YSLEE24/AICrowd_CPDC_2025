@@ -44,7 +44,7 @@ This year, the challenge consists of three tasks:
 
 # Dataset
 We provide two dataset splits: 
-- `data/test*_sample.json`: They are minimal data splits mainly for debugging. 
+- `data/task*_sample.json`: They are minimal data splits mainly for debugging. 
 - `data/task*_train.json`: They serve as training data for the challenge. 
 
 Each `.json` file contains several multi-turn conversations between a player and an NPC in a game environment. Each conversation has its unique worldviews, settings, player and NPC persona, etc. 
