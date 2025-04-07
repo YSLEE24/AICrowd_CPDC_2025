@@ -1,6 +1,6 @@
 # Starter Kit for Sony Commonsense Persona-Grounded Dialogue Challenge 2025
 
-![banner image](https://images.aicrowd.com/raw_images/challenges/social_media_image_file/1156/45fb360c594d4b5dad46.jpg)
+![banner image](https://images.aicrowd.com/raw_images/challenges/banner_file/1156/776d3b119fa4ee5d2c43.jpg)
 
 This repository is the Sony Commonsense Persona-Grounded Dialogue Challenge (CPDC) 2025 **Submission template and Starter kit**! Clone the repository to compete now!
 
