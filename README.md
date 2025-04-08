@@ -101,13 +101,13 @@ Please follow the instructions in [agents/README.md](agents/README.md) for instr
 
 You can add your SSH Keys to your GitLab account by going to your profile settings [here](https://gitlab.aicrowd.com/-/user_settings/ssh_keys). If you do not have SSH Keys, you will first need to [generate one](https://docs.gitlab.com/ee/user/ssh.html).
 
-2. **Fork the repository**. You can use [this link](https://gitlab.aicrowd.com/aicrowd/challenges/sony-commonsense-persona-grounded-dialogue-challenge-2025/starter-kit-sony/-/forks/new) to create a fork.
+2. **Fork the repository**. You can use [this link](https://gitlab.aicrowd.com/aicrowd/challenges/sony-commonsense-persona-grounded-dialogue-challenge-2025/sony-cpdc-2025-starter-kit/-/forks/new) to create a fork.
 
 3.  **Clone the repository**
 
     ```bash
-    git clone git@gitlab.aicrowd.com:<YOUR-AICROWD-USER-NAME>/starter-kit-sony.git
-    cd starter-kit-sony
+    git clone git@gitlab.aicrowd.com:<YOUR-AICROWD-USER-NAME>/sony-cpdc-2025-starter-kit.git
+    cd sony-cpdc-2025-starter-kit
     ```
 
 4. **Install** competition specific dependencies!
@@ -126,7 +126,7 @@ You can add your SSH Keys to your GitLab account by going to your profile settin
 ## 📮 How to make a submission?
 
 Please follow the instructions in [docs/submission.md](docs/submission.md) to make your first submission. 
-This also includes instructions on [specifying your software runtime](docs/submission.md#specifying-software-runtime-and-dependencies), [code structure](docs/submission.md#code-structure-guidelines), [submitting to different tracks](docs/submission.md#submitting-to-different-tracks).
+This also includes instructions on [specifying your software runtime](docs/submission.md#specifying-software-runtime-and-dependencies), [code structure](docs/submission.md#code-structure-guidelines), [submitting to different tasks](docs/submission.md#submitting-to-different-tasks).
 
 **Note**: **Remember to accept the Challenge Rules** on the challenge page, **and** the task page before making your first submission.
 
@@ -136,8 +136,8 @@ You can find more details about the hardware and system configuration in [docs/h
 
 
 # ❓ Frequently Asked Questions 
-## Which track is this starter kit for ?
-This starter kit can be used to submit to any of the tracks. You can find more information in [docs/submission.md#submitting-to-different-tracks](docs/submission.md#submitting-to-different-tracks).
+## Which task is this starter kit for ?
+This starter kit can be used to submit to any of the tasks. You can find more information in [docs/submission.md#submitting-to-different-tasks](docs/submission.md#submitting-to-different-tasks).
 
 **Best of Luck** :tada: :tada:
 
