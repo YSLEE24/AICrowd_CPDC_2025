@@ -2,3 +2,5 @@ langchain
 numpy 
 transformers 
 torch
+hf_transfer
+openai
