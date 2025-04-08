@@ -59,7 +59,7 @@ Your project should follow the structure outlined in the starter kit. Here’s a
 
 Remember, 
 - **your submission metadata JSON (`aicrowd.json`)** is crucial for mapping your submission to the challenge. Ensure it contains the correct `challenge_id`, `authors`, and other necessary information. **To utilize GPUs, set the `"gpu": true` flag in your `aicrowd.json`.**
-- The entire `function_call_langchain` directory will be overwritten during actual evaluation. All local modifications will be lost. DO NOT TAMPER WITH. 
+- The entire `function_call_langchain` directory will be overwritten during actual evaluation. All local modifications will be lost. **DO NOT TAMPER WITH.**
 
 ## Submitting to Different Tasks
 
