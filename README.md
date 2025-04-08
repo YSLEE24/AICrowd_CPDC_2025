@@ -60,6 +60,10 @@ The Sony CPDC challenge will be split into three tasks.
 - **Task 2: Commonsense Dialogue Response Generation**: The data for task 2 will include persona and worldview information as common information, along with available function definitions and role-specific knowledge. Based on this information, participants will generate natural and character-appropriate responses.
 - **Task 3: A hybrid of Task 1 and Task 2**, evaluating whether both objectives can be achieved simultaneously with a single agent. Submitting to Task 3 will automatically result in evaluation under both Task 1 and Task 2. Therefore, participants should prepare an agent that meets the requirements of both tasks.
 
+Sony CPDC 2025 features two tracks, GPU track and API track. In the GPU track, we provide participants with a GPU server to locally run LLMs to generate answers. In the API track, we provide participants with access to OpenAI APIs. Participants are required to build their solutions with fixed state-of-the-art LLMs. 
+
+Please find more information about how to submit to a specific track/task in [docs/submission.md#submitting-to-different-tasks](docs/submission.md#submitting-to-different-tasks).
+
 # Evaluation Metrics 
 Systems for task 1 will be evaluated on both function calling and response generation. Systems for task 2 will only be evaluated on response generation. 
 
