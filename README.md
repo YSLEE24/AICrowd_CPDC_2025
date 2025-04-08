@@ -50,7 +50,7 @@ We provide two dataset splits:
 
 Each `.json` file contains several multi-turn conversations between a player and an NPC in a game environment. Each conversation has its unique worldviews, settings, player and NPC persona, etc. 
 
-`npcdataset/` provides an interface for participants to parse the raw data. 
+`npcdataset/` provides an interface for participants to parse the raw data. We will use the `npcdataset` class to parse, load, and feed the data during our online evaluation, so do not tamper with this class, otherwise you risk data loading failures. 
 
 Under the challenge rules, participants can feel free to use any training data to build their solutions. 
 
