@@ -119,6 +119,13 @@ You can add your SSH Keys to your GitLab account by going to your profile settin
 
 6. Test your agent locally using `python local_run_task*.py`.
 
+To test for any software runtime errors, you can also build the docker image and run everything locally by: 
+```
+./docker_run.sh --task1
+./docker_run.sh --task2
+./docker_run.sh --task3
+```
+
 7. Accept the Challenge Rules on the main [challenge page](https://www.aicrowd.com/challenges/commonsense-persona-grounded-dialogue-challenge-2025) by clicking on the **Participate** button. Also accept the Challenge Rules on the Task specific page (link on the challenge page) that you want to submit to.
 
 8. Make a submission as described in [How to make a submission](#-how-to-make-a-submission) section.
