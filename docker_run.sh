@@ -13,6 +13,19 @@ check_nvidia_toolkit() {
     return 0
 }
 
+# Check for HF_TOKEN environment variable
+if [ -z "$HF_TOKEN" ]; then
+    echo "======================================================"
+    echo "WARNING: HF_TOKEN environment variable is not set!"
+    echo "This may cause issues with Hugging Face model downloads."
+    echo "Please set your Hugging Face token using:"
+    echo "export HF_TOKEN=your_token_here"
+    echo "======================================================"
+    HF_TOKEN_FLAG="-e HF_TOKEN=None"
+else
+    HF_TOKEN_FLAG="-e HF_TOKEN=$HF_TOKEN"
+fi
+
 # Check for nvidia-container-toolkit
 check_nvidia_toolkit
 HAS_GPU_SUPPORT=$?
@@ -99,6 +112,8 @@ if [ "$TASK1" = true ]; then
         -v "$(pwd)":/submission \
         -v "$HF_CACHE_DIR":/root/.cache/huggingface \
         -e HF_HOME=/root/.cache/huggingface \
+        -e HF_HUB_ENABLE_HF_TRANSFER=1 \
+        $HF_TOKEN_FLAG \
         -w /submission \
         --ipc=host \
         $IMAGE_NAME python local_run_task1.py
@@ -115,6 +130,8 @@ if [ "$TASK2" = true ]; then
         -v "$(pwd)":/submission \
         -v "$HF_CACHE_DIR":/root/.cache/huggingface \
         -e HF_HOME=/root/.cache/huggingface \
+        -e HF_HUB_ENABLE_HF_TRANSFER=1 \
+        $HF_TOKEN_FLAG \
         -w /submission \
         --ipc=host \
         $IMAGE_NAME python local_run_task2.py
