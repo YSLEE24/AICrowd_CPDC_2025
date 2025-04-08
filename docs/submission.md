@@ -58,7 +58,8 @@ Your project should follow the structure outlined in the starter kit. Here’s a
 ```
 
 Remember, 
-- **your submission metadata JSON (`aicrowd.json`)** is crucial for mapping your submission to the challenge. Ensure it contains the correct `challenge_id`, `authors`, and other necessary information. **To utilize GPUs, set the `"gpu": true` flag in your `aicrowd.json`.**
+- **your submission metadata JSON (`aicrowd.json`)** is crucial for mapping your submission to the challenge. Ensure it contains the correct `challenge_id`, `authors`, and other necessary information. 
+- To submit to the GPU track, set the `"gpu": true` flag in your `aicrowd.json`. Otherwise, if you set `"gpu": false`, the submission will automatically go to the API track. 
 - The entire `function_call_langchain` directory will be overwritten during actual evaluation. All local modifications will be lost. **DO NOT TAMPER WITH.**
 
 ## Submitting to Different Tasks
@@ -71,7 +72,7 @@ Specify the task by setting the appropriate `challenge_id` in your [aicrowd.json
 | Task 2: Context-Aware Dialogue | `"context-aware-dialogue-task-2"`|
 | Task 3: Integrating Contextual Dialogue and Task Execution | `"integrating-contextual-dialogue-and-task-execution-hybrid"`|
 
-
+In addition, if you set `"gpu": true`, you automatically submit to the GPU track. If you set `"gpu": false`, the submission automatically goes to the API track. 
 
 ## Submission Entry Point
 
