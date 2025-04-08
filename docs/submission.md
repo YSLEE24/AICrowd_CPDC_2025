@@ -74,6 +74,20 @@ Specify the task by setting the appropriate `challenge_id` in your [aicrowd.json
 
 In addition, if you set `"gpu": true`, you automatically submit to the GPU track. If you set `"gpu": false`, the submission automatically goes to the API track. 
 
+## Using models on HuggingFace
+
+If you want to use a model on HuggingFace, please put its path in `aicrowd.json` as: 
+```
+    "hf_models": [
+        "MODEL_PATH1", 
+        "MODEL_PATH2", 
+        ...
+    ]
+```
+Also, these models must be publicly available or the aicrowd HF account must have access.
+
+**Important:** If your model is private, grant the aicrowd user permission to pull it, or your submission will fail.
+
 ## Submission Entry Point
 
 The evaluation process will instantiate an agent from `agent/user_config.py` for evaluation. Ensure this configuration is set correctly.
