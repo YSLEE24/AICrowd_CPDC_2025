@@ -4,3 +4,4 @@ transformers
 torch
 hf_transfer
 openai
+huggingface_hub
