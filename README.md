@@ -10,6 +10,8 @@ Clone the repository to compete now!
 *  **The procedure** for best practices and information on how we evaluate your model, etc.
 *  **Starter code** for you to get started!
 
+**Note**: The starter kit and all related interfaces are subject to change in future rounds of the challenge, e.g. from Round 1 to Round 2. So please check back frequently for the latest sterter kit. 
+
 # Table of Contents
 
 1. [Competition Overview](#-competition-overview)
