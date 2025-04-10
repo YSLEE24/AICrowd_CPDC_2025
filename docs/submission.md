@@ -76,19 +76,33 @@ In addition, if you set `"gpu": true`, you automatically submit to the GPU track
 
 ## Using models on HuggingFace
 
-If you want to use a model on HuggingFace, please put its path in `aicrowd.json` as: 
+If you want to use a model available HuggingFace, please include itsa reference to its model spec in `aicrowd.json` as: 
 ```
     "hf_models": [
-        "MODEL_PATH1", 
-        "MODEL_PATH2", 
+      {
+        "repo_id": "meta-llama/Llama-3.1-8B-Instruct",
+        "revision": "main"
+      },
+      {
+        "repo_id": "meta-llama/Llama-3.1-8B",
+        "revision": "main",
+        "ignore_patterns": "*.md",
+      }
         ...
     ]
 ```
-Also, these models must be publicly available or the aicrowd HF account must have access.
 
-When you submit to the API track (i.e. `"gpu": false`), please remove the `hf_models` key in `aicrowd.json`. 
+The evaluators will ensure that before the evaluation begins (in a container without network access), these models are available in the local huggingface cache of the evaluation container.
 
-**Important:** If your model is private, grant the aicrowd user permission to pull it, or your submission will fail.
+The keys for the `model_spec` dictionary can include any parameter supported by the [`huggingface_hub.snapshot_download`](https://huggingface.co/docs/huggingface_hub/v0.30.2/en/package_reference/file_download#huggingface_hub.snapshot_download) function.
+
+**Important:**
+- Models specified must be publicly available, or the [aicrowd Hugging Face account](https://huggingface.co/aicrowd) must be explicitly granted access.
+- If your model repository is private, you must grant access to the [`aicrowd` user](https://huggingface.co/aicrowd). Otherwise, your submission will fail.
+
+**Granting access to private repositories:**
+To provide access to a private repository, create an organization on Hugging Face specifically for your participation in this competition. Create your private repository within this organization and add the `aicrowd` user as a member to ensure seamless access.
+
 
 ## Submission Entry Point
 
