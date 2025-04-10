@@ -8,10 +8,11 @@ import json
 class OpenAIAgent(object):
     def __init__(self):
         """Initialize an openai agent"""
+        # These environment variables will be automatically set on the execution container during evaluation
         self.client = OpenAI(
             api_key=os.environ.get("OPENAI_API_KEY"),
+            base_url=os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1")
         )
-
 
     def _create_messages_for_function(self, tool_functions, action_functions, dialogue):
         """
