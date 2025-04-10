@@ -2,7 +2,7 @@ from typing import Any, List, Dict
 
 
 class DummyResponseAgent(object):
-    “”“
+    """
     A dummy agent implementation for the Sony CPDC challenge. 
     It returns the same template answer for all questions, and does not make any function calls. 
     """
