@@ -5,7 +5,15 @@ import torch
 import copy
 
 class VanillaLlamaAgent(object):
+    """
+        A simple agent implementation for the Sony CPDC challenge. 
+        It calls a LLaMA-3.1-8B-Instruct model twice per turn. 
+        The first call aims to find appropriate functions to call, 
+        and the second generates responses. 
+    """
     def __init__(self):
+        """Load necesasry models and configurations here"""
+        # Please specify all HF model paths in `aicrowd.json`. 
         model_path = 'meta-llama/Llama-3.1-8B-Instruct'
         self.model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.bfloat16, device_map='auto')
         self.tokenizer = AutoTokenizer.from_pretrained(model_path)
@@ -140,27 +148,43 @@ Use the following character settings and knowledge to create your response.
     
     def generate_functions_and_responses(self, tool_registry, action_registry, worldview, persona, role, knowledge, state, dialogue, executor):
         """
+        Given the background information, perform adequate function calls, and based on the function call results, generate coherent and reasonable responses. 
+
         Parameters
         ----------
-        tool_registry, action_registry are function registries that can index functions with names
-        worldview: str
-        persona: Dict[str, str]
-        role: str
-        knowledge: Dict[str, Any]
-        state: Dict[str, str]
-        dialogue: List[Dict[str, str]]
-        executor: a module that can execute function calls and record history of function calling. 
+            tool_registry, action_registry: Dict[str, Dict[str, str]] are function registries for tool and action functions, 
+                from which we can index functions with function names. 
+                For example, you can index a tool function named 'tool1' via `tool_registry['function_registry']['tool1'][k]`, 
+                where k can be 'args', 'description', or 'name'.  
+            worldview: str, the worldview of the current dialogue. 
+            persona: Dict[str, str], describes the persona of the NPC, e.g. persona['name'], persona['age'], persona['gender'], persona['occupation']. 
+                See the sample and training datasets for details. 
+            role: str, the role of the NPC. 
+            knowledge: Dict[str, Any], contains basic knowledge about the items (e.g. quests, weapons). See the sample and training datasets for details. 
+            state: Dict[str, str], the time, location, etc. of the current conversation. 
+            dialogue: List[Dict[str, str]]. It records the previous turns of the dialogue. 
+                Each dict in the list is of the following format: 
+                {
+                    "speaker": ..., 
+                    "text": ..., 
+                    "target_item": ...
+                }
+            executor: It is a module that can execute function calls you need and record the history of all function calls you make. 
 
-        Return
+
+        Returns
         ----------
-        Dict[str, str]
-            {
-                "prompts": "..."
-                "final_responses": "..."
-            }
-        """
+            Dict[str, str] with the following structure. 
+                {
+                    "prompts": Optional. The prompt of the current turn. 
+                    "final_responses": Your response of the current turn. 
+                }
         
-        # first ask the LLM to generate the functions to call. 
+        NOTE: You do not need to return the generated function calls. The `executor` will automatically record that. 
+        """
+
+        
+        # Step 1: In our first call to the LLM, we ask it to generate all necessary functions to call.  
         messages_func = self._create_messages_for_function(tool_registry, action_registry, dialogue)
         input_ids = self.tokenizer.apply_chat_template(
             messages_func, 
@@ -180,7 +204,7 @@ Use the following character settings and knowledge to create your response.
         res = outputs[0][input_ids.shape[-1]:]        
         items = self.tokenizer.decode(res, skip_special_tokens=True).split("\n")
 
-        # parse the generated results. 
+        # Step 2: Parse the generated function call results.  
         final_functions = []
         res_item = {}
         for item in items:
@@ -205,12 +229,10 @@ Use the following character settings and knowledge to create your response.
         if "name" in res_item:
             final_functions.append(res_item)
 
-        # obtain function_calling results via the executor
+        # Step 3: Obtain the return values for all function call results via the executor. 
         function_results = executor.execute(final_functions)
 
-
-
-        # then generate response. 
+        # Step 4: Based on the function call results, generate response. 
         messages_resp = self._create_messages_for_dialogue(worldview, persona, role, knowledge, state, dialogue, function_results)
         input_ids = self.tokenizer.apply_chat_template(
             messages_resp,
@@ -230,7 +252,7 @@ Use the following character settings and knowledge to create your response.
         )
         res = outputs[0][input_ids.shape[-1]:]
         res_str = self.tokenizer.decode(res, skip_special_tokens=True).replace("\n", " ")
-
+        
         # However, participants can do more than that, like back and forth calling of functions. 
 
         # Only return response. We don't return function calls as it is recorded in the 'executor'. 
