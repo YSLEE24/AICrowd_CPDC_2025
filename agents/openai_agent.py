@@ -301,7 +301,7 @@ Use the following character settings and knowledge to create your response.
         tools, messages = self._create_messages_for_function(tool_registry, action_registry, dialogue)
         # call openai api to generate functions 
         response = self.client.responses.create(
-            model="gpt-4o",
+            model="gpt-4o-mini", # We only allow GPT-4o-mini in the API track. Any other models will lead to failure. 
             input=messages,
             tools=tools,
         )
