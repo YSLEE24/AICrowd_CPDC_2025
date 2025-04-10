@@ -37,7 +37,6 @@ class DummyResponseAgent(object):
                     "target_item": ...
                 }
             executor: It is a module that can execute function calls you need and record the history of all function calls you make. 
-                Use the executor in the format of `executor.execute()`
 
 
         Returns
