@@ -323,7 +323,7 @@ Use the following character settings and knowledge to create your response.
         # then generate response
         messages_resp = self._create_messages_for_dialogue(worldview, persona, role, knowledge, state, dialogue, function_results)
         response = self.client.responses.create(
-            model="gpt-4o",
+            model="gpt-4o-mini",
             input=messages_resp,
         )
         return {
