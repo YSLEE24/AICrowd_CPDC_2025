@@ -86,6 +86,8 @@ If you want to use a model on HuggingFace, please put its path in `aicrowd.json`
 ```
 Also, these models must be publicly available or the aicrowd HF account must have access.
 
+When you submit to the API track (i.e. `"gpu": false`), please remove the `hf_models` key in `aicrowd.json`. 
+
 **Important:** If your model is private, grant the aicrowd user permission to pull it, or your submission will fail.
 
 ## Submission Entry Point
