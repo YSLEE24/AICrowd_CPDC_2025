@@ -148,7 +148,12 @@ Use the following character settings and knowledge to create your response.
     
     def generate_functions_and_responses(self, tool_registry, action_registry, worldview, persona, role, knowledge, state, dialogue, executor):
         """
-        Given the background information, perform adequate function calls, and based on the function call results, generate coherent and reasonable responses. 
+        Given the background information, perform adequate function calls, and based on the function call results, generate coherent and reasonable responses.
+        This agent does the following four steps. 
+        1. Ask the LLM to generate the necessary functions to call. 
+        2. Parse the generation to obtain function names and arguments to call. 
+        3. Call the `executor` to obtain results for the function calls. 
+        4. Call the LLM to generate responses based on the background information and the function call results. 
 
         Parameters
         ----------
@@ -170,6 +175,15 @@ Use the following character settings and knowledge to create your response.
                     "target_item": ...
                 }
             executor: It is a module that can execute function calls you need and record the history of all function calls you make. 
+                Call the executor with `executor.execute(function_items)`, where `function_items` is a list of dictionaries containing all function calls to make. 
+                Each dictionary in `function_items` should have the following format: 
+                    {
+                        'name': <function_name>, 
+                        'parameters': {
+                            <param_name>: <param_val>, 
+                            ...
+                        } 
+                    }
 
 
         Returns
