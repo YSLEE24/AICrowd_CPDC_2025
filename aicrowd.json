@@ -2,6 +2,9 @@
     "challenge_id": "task-oriented-dialogue-task-1",
     "gpu": true,
     "hf_models": [
-        "meta-llama/Llama-3.1-8B-Instruct"
+       {
+        "repo_id": "meta-llama/Llama-3.1-8B-Instruct",
+        "revision": "main"
+      }
     ]
 }
