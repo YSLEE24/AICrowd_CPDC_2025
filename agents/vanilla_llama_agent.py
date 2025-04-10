@@ -175,7 +175,8 @@ Use the following character settings and knowledge to create your response.
                     "target_item": ...
                 }
             executor: It is a module that can execute function calls you need and record the history of all function calls you make. 
-                Call the executor with `executor.execute(function_items)`, where `function_items` is a list of dictionaries containing all function calls to make. 
+                Call the executor with `executor.execute(function_items)`, where `function_items` 
+                is a list of dictionaries containing all function calls to make. 
                 Each dictionary in `function_items` should have the following format: 
                     {
                         'name': <function_name>, 
