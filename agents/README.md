@@ -1,7 +1,7 @@
 # Guide to Writing Your Own Agents
 
 ## Agent Code Organization
-For a streamlined experience, we suggest placing the code for all your agents within the `agent` directory. This is a recommendation for organizational purposes, but it's not a strict requirement.
+For a streamlined experience, we suggest placing the code for all your agents within the `agents` directory. This is a recommendation for organizational purposes, but it's not a strict requirement.
 
 ## Agent Class
 We provide an example agent, `vanilla_llama_agent.py`, to illustrate how you might structure your own agent. Crucially, your agent class must implement the `generate_functions_and_responses` method.
