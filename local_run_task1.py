@@ -4,7 +4,7 @@ import numpy as np
 import copy
 import npcdataset.parsers
 from agents.user_config import UserAgent
-from function_call_langchain import tool_map, action_map, Executor 
+from function_calls import tool_map, action_map, Executor 
 import argparse 
 import time 
 from tqdm import tqdm 

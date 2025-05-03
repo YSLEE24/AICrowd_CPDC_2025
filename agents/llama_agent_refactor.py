@@ -182,8 +182,8 @@ class LlamaAgentRefactor(object):
         # A small helper to format each registry
         def registry_to_blocks(registry):
             for fn_info in registry["function_registry"].values():
-                name = fn_info["name"]
-                desc = fn_info["description"]
+                name = fn_info.name
+                desc = fn_info.description
                 yield f"# Function Name: {name}\n# Function Docstring:\n{desc}\n"
 
         # Gather from both tool and action

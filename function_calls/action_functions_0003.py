@@ -54,10 +54,5 @@ def equip(item_name: str) -> None:
 
 all_functions = [sell_request_record, sell, equip]
 action_functions_0003 = {'function_registry': {
-    f.name: {
-        'name': f.name, 
-        'description': f.description,
-        'args': f.args
-    }
-    for f in all_functions
+    f.name: f for f in all_functions
 }}

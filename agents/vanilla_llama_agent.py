@@ -56,7 +56,7 @@ argument name: xxx, value: xxx
 # Function Name: {}
 # Function Docstring: 
 {}
-            """.format(tool_['name'], tool_['description'])
+            """.format(tool_.name, tool_.description)
             function_information.append(tool_prompt)
         for action_name in action_functions['function_registry'].keys():
             action_ = action_functions['function_registry'][action_name]
@@ -64,7 +64,7 @@ argument name: xxx, value: xxx
 # Function Name: {}
 # Function Docstring: 
 {}
-            """.format(action_['name'], action_['description'])
+            """.format(action_.name, action_.description)
             function_information.append(action_prompt)
         function_information_agg = '\n'.join(function_information)
         additional_info = ""

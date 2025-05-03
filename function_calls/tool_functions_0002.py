@@ -148,10 +148,5 @@ def check_description(item_name: str) -> List[Dict[str, str]]:
 
 all_functions = [search_item, check_basic_info, check_price, check_type, check_attack, check_description]
 tool_functions_0002 = {'function_registry':{
-    f.name: {
-        'name': f.name, 
-        'description': f.description,
-        'args': f.args
-    }
-    for f in all_functions
+    f.name: f for f in all_functions
 }}
