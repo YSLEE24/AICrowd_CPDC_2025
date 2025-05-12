@@ -1,5 +1,7 @@
 from langchain.tools import tool
 from typing import List, Dict, Tuple
+from langchain_core.utils.function_calling import convert_to_openai_function
+
 
 @tool
 def sell_request_confirm(item_name: str) -> None:
@@ -54,5 +56,5 @@ def equip(item_name: str) -> None:
 
 all_functions = [sell_request_confirm, sell, equip]
 action_functions_0002 = {'function_registry': {
-    f.name: f for f in all_functions
+    f.name: convert_to_openai_function(f, strict=True) for f in all_functions
 }}

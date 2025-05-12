@@ -1,4 +1,6 @@
 from langchain.tools import tool
+from langchain_core.utils.function_calling import convert_to_openai_function
+
 
 @tool 
 def select_request_confirm(quest_name: str) -> None:
@@ -53,5 +55,5 @@ def start(quest_name: str) -> None:
 
 all_functions = [select_request_confirm, select, start]
 action_functions_0005 = {'function_registry': {
-    f.name: f for f in all_functions
+    f.name: convert_to_openai_function(f, strict=True) for f in all_functions
 }}
