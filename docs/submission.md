@@ -43,7 +43,7 @@ Your project should follow the structure outlined in the starter kit. Here’s a
 │   └── runtime.md                  # Documentation on the runtime environment setup, dependency configs
 ├── Dockerfile                      # The Dockerfile that will be used to build your submission and all dependencies. The default one will work fine, but you can write your own. 
 ├── docker_run.sh                   # This script builds your submission locally and calls `local_evaluation.py`. It can be used to debug (if your submission fails to build). 
-├── function_call_langchain/           # The interface for the agent to call tool and action functions (for task 1). 
+├── function_calls/           # The interface for the agent to call tool and action functions (for task 1). 
 │                                   # IMPORTANT: This directory will be overwritten during evaluation. DO NOT TAMPER WITH IT. 
 │   ├──`executor.py`                # This is the interface to implement the function calls made by the agent. For the starter kit, 
 │                                   # the `Executor` will only return valid values if the agent's function calls match the `gold_functions`. 
@@ -60,7 +60,7 @@ Your project should follow the structure outlined in the starter kit. Here’s a
 Remember, 
 - **your submission metadata JSON (`aicrowd.json`)** is crucial for mapping your submission to the challenge. Ensure it contains the correct `challenge_id`, `authors`, and other necessary information. 
 - To submit to the GPU track, set the `"gpu": true` flag in your `aicrowd.json`. Otherwise, if you set `"gpu": false`, the submission will automatically go to the API track. 
-- The entire `function_call_langchain` directory will be overwritten during actual evaluation. All local modifications will be lost. **DO NOT TAMPER WITH.**
+- The entire `function_calls` directory will be overwritten during actual evaluation. All local modifications will be lost. **DO NOT TAMPER WITH.**
 
 ## Submitting to Different Tasks
 
