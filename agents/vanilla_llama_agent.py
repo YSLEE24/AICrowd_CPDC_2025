@@ -6,10 +6,19 @@ import copy
 
 class VanillaLlamaAgent(object):
     """
-        A simple agent implementation for the Sony CPDC challenge. 
+        VanillaLlamaAgent is a simple agent implementation for the GPU track of the Sony CPDC 2025 Challenge. 
+
+        This agent takes in information from the dialogue, the functions, and the background of the scenario, 
         It calls a LLaMA-3.1-8B-Instruct model twice per turn. 
         The first call aims to find appropriate functions to call, 
         and the second generates responses. 
+
+        Attributes: 
+            model: The LLaMA-3.1-8B-Instruct model. 
+            tokenizer: The tokenizer for the LLaMA-3.1-8B-Instruct model. 
+        
+        Remember to specify all HF models you need in `aicrowd.json`. 
+        Otherwise, the evaluator will not be able to download the models, and your submission will fail. 
     """
     def __init__(self):
         """Load necesasry models and configurations here"""
@@ -27,175 +36,36 @@ class VanillaLlamaAgent(object):
 
         self.max_seq_len = 2048
         self.max_gen_len = 50
-    
-    def _create_messages_for_function(self, tool_functions, action_functions, dialogue):
-        """
-            Formats function information into prompt. 
-            'tool_functions' and 'action_functions' are both function registries
-            that supports indexing a function with its name
-        """
-        base_prompt = """# Instruction
-You are an assistant in estimating function names and arguments.
-You need information to answer the text entered by the user.
-Use the following steps to perform function's estimation.
-1. From the function information below, select a function that can obtain the information you need.
-2. Make the arguments needed by the function as appropriate.
-The format of the output is:
-function name: xxx
-argument name: xxx, value: xxx
 
-## Function Information
-{}
-
-## Additional Information
-{}"""
-        function_information = []
-        for tool_name in tool_functions['function_registry'].keys():
-            tool_ = tool_functions['function_registry'][tool_name]
-            tool_prompt = """
-# Function Name: {}
-# Function Docstring: 
-{}
-            """.format(tool_['name'], tool_['description'])
-            function_information.append(tool_prompt)
-        for action_name in action_functions['function_registry'].keys():
-            action_ = action_functions['function_registry'][action_name]
-            action_prompt = """
-# Function Name: {}
-# Function Docstring: 
-{}
-            """.format(action_['name'], action_['description'])
-            function_information.append(action_prompt)
-        function_information_agg = '\n'.join(function_information)
-        additional_info = ""
-        for info in dialogue[-1]["target_item"]:
-            if additional_info == "":
-                additional_info = "parameter name: name, value: " + info["name"]
-            else:
-                additional_info = additional_info + "\nargument name: name, value: " + info["name"]
-
-        input_text = dialogue[-1]["text"]
-        prompt = base_prompt.format(function_information_agg, additional_info)
-        messages = []
-        messages.append({"role":"system", "content":prompt})
-        messages.append({"role":"user", "content":input_text})
-
-        return messages
-
-    def _create_messages_for_dialogue(self, worldview, persona, role, knowledge, state, dialogue, function_results):
-        base_prompt = """\
-You are an assistant who becomes a character.
-Use the following character settings and knowledge to create your response.
-
-# Character Setting
-[Here is Character Setting]
-
-# Knowledge
-[Here is Knowledge]"""
-
-        worldview = worldview + "\n" + knowledge["general_info"]
-        
-        character_setting = ""
-        for key in persona:
-            if character_setting == "":
-                character_setting = key + ": " + persona[key]
-            else:
-                character_setting = character_setting + "\n" + key + ": " + persona[key]
-
-        knowledge_setting = ""
-        for f_result in function_results:
-            if knowledge_setting != "":
-                knowledge_setting = knowledge_setting + "\n"
-            for arg in f_result["parameters"]:
-                if knowledge_setting == "":
-                    knowledge_setting = arg + ": " + str(f_result["parameters"][arg])
-                else:
-                    knowledge_setting = knowledge_setting + ", " + arg + ": " + str(f_result["parameters"][arg])
-            for item in f_result["return"]:
-                for key in item:
-                    if knowledge_setting == "":
-                        knowledge_setting = key + ": " + item[key]
-                    else:
-                        knowledge_setting = knowledge_setting + ", " + key + ": " + item[key]
-                        
-        for item in knowledge["knowledge_info"]:
-            if knowledge_setting != "":
-                knowledge_setting = knowledge_setting + "\n"
-            for key in item:
-                if knowledge_setting == "":
-                    knowledge_setting = key + ": " + item[key]
-                else:
-                    knowledge_setting = knowledge_setting + ", " + key + ": " + item[key]
-
-                    
-        history_list = []
-        for item in dialogue:
-            role = "user"
-            if item["speaker"] == "npc":
-                role = "assistant"
-            history_list.append({"role":role, "content":item["text"]})
-
-        prompt = base_prompt.replace("[Here is Worldview]", worldview)
-        prompt = prompt.replace("[Here is Role]", role)
-        prompt = prompt.replace("[Here is Character Setting]", character_setting)
-        prompt = prompt.replace("[Here is Knowledge]", knowledge_setting)
-        
-        messages = []
-        messages.append({"role":"system", "content":prompt})
-        messages.extend(history_list)
-
-        return messages
-    
+    ############################################################
+    # The entrypoint of the evaluator.  
+    ############################################################
     def generate_functions_and_responses(self, tool_registry, action_registry, worldview, persona, role, knowledge, state, dialogue, executor):
         """
-        Given the background information, perform adequate function calls, and based on the function call results, generate coherent and reasonable responses.
-        This agent does the following four steps. 
-        1. Ask the LLM to generate the necessary functions to call. 
-        2. Parse the generation to obtain function names and arguments to call. 
-        3. Call the `executor` to obtain results for the function calls. 
-        4. Call the LLM to generate responses based on the background information and the function call results. 
+        Generates the responses given the dialogue, the functions, and the background of the video game scenario.
 
-        Parameters
-        ----------
-            tool_registry, action_registry: Dict[str, Dict[str, str]] are function registries for tool and action functions, 
-                from which we can index functions with function names. 
-                For example, you can index a tool function named 'tool1' via `tool_registry['function_registry']['tool1'][k]`, 
-                where k can be 'args', 'description', or 'name'.  
-            worldview: str, the worldview of the current dialogue. 
-            persona: Dict[str, str], describes the persona of the NPC, e.g. persona['name'], persona['age'], persona['gender'], persona['occupation']. 
-                See the sample and training datasets for details. 
-            role: str, the role of the NPC. 
-            knowledge: Dict[str, Any], contains basic knowledge about the items (e.g. quests, weapons). See the sample and training datasets for details. 
-            state: Dict[str, str], the time, location, etc. of the current conversation. 
-            dialogue: List[Dict[str, str]]. It records the previous turns of the dialogue. 
-                Each dict in the list is of the following format: 
-                {
-                    "speaker": ..., 
-                    "text": ..., 
-                    "target_item": ...
-                }
-            executor: It is a module that can execute function calls you need and record the history of all function calls you make. 
-                Call the executor with `executor.execute(function_items)`, where `function_items` 
-                is a list of dictionaries containing all function calls to make. 
-                Each dictionary in `function_items` should have the following format: 
-                    {
-                        'name': <function_name>, 
-                        'parameters': {
-                            <param_name>: <param_val>, 
-                            ...
-                        } 
-                    }
-
-
-        Returns
-        ----------
-            Dict[str, str] with the following structure. 
-                {
-                    "prompts": Optional. The prompt of the current turn. 
-                    "final_responses": Your response of the current turn. 
-                }
+        This method is the entry point called by the evaluator. It is implemented with the following steps: 
         
-        NOTE: You do not need to return the generated function calls. The `executor` will automatically record that. 
+        1. Prepare prompts for function calling. 
+        2. Call the model (LLaMA-3.1-8B-Instruct) to generate the necessary function calls. 
+        3. Use the `executor` to obtain the function call results. 
+        4. With the function call results and the background, prepare prompts for response generation. 
+        5. Call the model (LLaMA-3.1-8B-Instruct) to generate the text response. 
+
+        Args: 
+            tool_registry: A dict mapping tool names to tool functions (OpenAI function calling format). 
+            action_registry: A dict mapping action names to action functions (OpenAI function calling format). 
+            Implementations can be found in the directory `function_calls`. 
+            
+            worldview, persona, role, knowledge, state: They are the background information of the video game scenario. 
+            dialogue: List[Dict], the full dialogue history. `dialogue[-1]` refers to the current turn. 
+            executor: This is implemented in `function_calls/executor.py`. It takes in a list of function calls and return the results. 
+
+        Returns: 
+            A dict with the following keys: 
+                'final_responses': str, the text responses. 
+
+            You do not have to return the function calls. The `executor` will record all the function calls that are passed to it. 
         """
 
         
@@ -275,5 +145,145 @@ Use the following character settings and knowledge to create your response.
             'prompts': messages_resp, 
             'final_responses': res_str
         }
+
+    ############################################################
+    # Helper functions. 
+    ############################################################
+
+    def _create_messages_for_function(self, tool_functions, action_functions, dialogue):
+        """
+            Creates the messages to feed to the model to generate the necessary function calls. 
+
+            Args: 
+                tool_registry: A dict mapping tool names to tool functions (OpenAI function calling format). 
+                action_registry: A dict mapping action names to action functions (OpenAI function calling format). 
+                Implementations can be found in the directory `function_calls`. 
+                dialogue: List[Dict], the dialogue history. dialogue[-1] refers to the current turn. 
+    
+            Returns: 
+                messages: List[Dict], the messages to feed to the model. 
+            
+            Note that the prompt here is not tuned for performance. 
+        """
+        function_prompt = (
+            "# Instruction\n"
+            "You are an assistant in estimating function names and arguments given some dialogues in a video game world.\n"
+            "You will need the following information to respond to the user's input. \n"
+            "Use the following steps to estimate the necessary function names and arguments. \n"
+            "\n"
+            "1. Read the dialogue and the target item. \n"
+            "2. From the given function information, select the functions that can obtain the information you need. \n"
+            "3. Fill in the arguments needed by the function as appropriate. \n"
+            "The format of the output is:\n"
+            "function name: xxx\n"
+            "argument name: xxx, value: xxx\n"
+            "\n"
+            "Note: You may select multiple functions or no functions at all. \n"
+            "\n"
+            "# Function Information\n"
+            "{}\n"
+            "# Additional Information\n"
+            "{}\n"
+        )
+
+        # Prepare function information by concatenating all function names and docstrings. 
+        function_information = []
+        for tool_name in tool_functions['function_registry'].keys():
+            tool_ = tool_functions['function_registry'][tool_name]
+            tool_prompt = (
+                "# Function Name: {}\n"
+                "# Function Docstring: {}\n"
+            ).format(tool_['name'], tool_['description'])
+            function_information.append(tool_prompt)
+        for action_name in action_functions['function_registry'].keys():
+            action_ = action_functions['function_registry'][action_name]
+            action_prompt = (
+                "# Function Name: {}\n"
+                "# Function Docstring: {}\n"
+            ).format(action_['name'], action_['description'])
+            function_information.append(action_prompt)
+        function_information_agg = '\n'.join(function_information)
+
+        # 'target_item' is used to indicate what the user is referring to, such as 'this', 'that', 'the one', etc. 
+        additional_info = ""
+        if len(dialogue[-1]["target_item"]) > 0:
+            additional_info = "In the dialogue, the user may be referring to the following items: \n"
+            for info in dialogue[-1]["target_item"]:
+                additional_info += f'parameter name: name, value: {info["name"]}\n'
+
+        input_text = dialogue[-1]["text"]
+        prompt = function_prompt.format(function_information_agg, additional_info)
+        messages = []
+        messages.append({"role":"system", "content":prompt})
+        messages.append({"role":"user", "content":input_text})
+
+        return messages
+
+
+    def _create_messages_for_dialogue(self, worldview, persona, role, knowledge, state, dialogue, function_results):
+        base_prompt = """\
+You are an assistant who becomes a character.
+Use the following character settings and knowledge to create your response.
+
+# Character Setting
+[Here is Character Setting]
+
+# Knowledge
+[Here is Knowledge]"""
+
+        worldview = worldview + "\n" + knowledge["general_info"]
+        
+        character_setting = ""
+        for key in persona:
+            if character_setting == "":
+                character_setting = key + ": " + persona[key]
+            else:
+                character_setting = character_setting + "\n" + key + ": " + persona[key]
+
+        knowledge_setting = ""
+        for f_result in function_results:
+            if knowledge_setting != "":
+                knowledge_setting = knowledge_setting + "\n"
+            for arg in f_result["parameters"]:
+                if knowledge_setting == "":
+                    knowledge_setting = arg + ": " + str(f_result["parameters"][arg])
+                else:
+                    knowledge_setting = knowledge_setting + ", " + arg + ": " + str(f_result["parameters"][arg])
+            for item in f_result["return"]:
+                for key in item:
+                    if knowledge_setting == "":
+                        knowledge_setting = key + ": " + item[key]
+                    else:
+                        knowledge_setting = knowledge_setting + ", " + key + ": " + item[key]
+                        
+        for item in knowledge["knowledge_info"]:
+            if knowledge_setting != "":
+                knowledge_setting = knowledge_setting + "\n"
+            for key in item:
+                if knowledge_setting == "":
+                    knowledge_setting = key + ": " + item[key]
+                else:
+                    knowledge_setting = knowledge_setting + ", " + key + ": " + item[key]
+
+                    
+        history_list = []
+        for item in dialogue:
+            role = "user"
+            if item["speaker"] == "npc":
+                role = "assistant"
+            history_list.append({"role":role, "content":item["text"]})
+
+        prompt = base_prompt.replace("[Here is Worldview]", worldview)
+        prompt = prompt.replace("[Here is Role]", role)
+        prompt = prompt.replace("[Here is Character Setting]", character_setting)
+        prompt = prompt.replace("[Here is Knowledge]", knowledge_setting)
+        
+        messages = []
+        messages.append({"role":"system", "content":prompt})
+        messages.extend(history_list)
+
+        return messages
+    
+
         
         
