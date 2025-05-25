@@ -70,9 +70,9 @@ class VanillaLlamaAgent(object):
 
         
         # Step 1: In our first call to the LLM, we ask it to generate all necessary functions to call.  
-        messages_func = self._create_messages_for_function(tool_registry, action_registry, dialogue)
+        function_messages = self._create_messages_for_function(tool_registry, action_registry, dialogue)
         input_ids = self.tokenizer.apply_chat_template(
-            messages_func, 
+            function_messages, 
             add_generation_prompt=True, 
             return_tensors='pt'
         ).to(self.model.device)
@@ -118,9 +118,9 @@ class VanillaLlamaAgent(object):
         function_results = executor.execute(final_functions)
 
         # Step 4: Based on the function call results, generate response. 
-        messages_resp = self._create_messages_for_dialogue(worldview, persona, role, knowledge, state, dialogue, function_results)
+        dialogue_messages = self._create_messages_for_dialogue(worldview, persona, role, knowledge, state, dialogue, function_results)
         input_ids = self.tokenizer.apply_chat_template(
-            messages_resp,
+            dialogue_messages,
             add_generation_prompt=True,
             return_tensors="pt"
         ).to(self.model.device)
@@ -221,62 +221,80 @@ class VanillaLlamaAgent(object):
 
 
     def _create_messages_for_dialogue(self, worldview, persona, role, knowledge, state, dialogue, function_results):
-        base_prompt = """\
-You are an assistant who becomes a character.
-Use the following character settings and knowledge to create your response.
+        """
+        Based on the background information of the video game and the dialogue history, 
+        creates the messages to feed to OpenAI client to generate the text response. 
 
-# Character Setting
-[Here is Character Setting]
+        Args: 
+            worldview, persona, role, knowledge, state: They are the background information of the video game scenario. 
+            dialogue: List[Dict], the full dialogue history. `dialogue[-1]` refers to the current turn. 
+            function_results: A list of function call results. 
+        """
 
-# Knowledge
-[Here is Knowledge]"""
+        dialogue_prompt = (
+            "# Instruction\n"
+            "You are an assistant that plays the role of a character in a video game. \n"
+            "Use the following character settings and knowledge to create your response.\n"
+            "\n"
+            "# Character Settings: You should act as the following character. \n"
+            "{}\n"
+            "\n"
+            "# Knowledge\n"
+            "There are two parts of knowledge. The first part is the specific knowledge obtained from the function calls. \n"
+            "The second part is the general knowledge of all items involved in the dialogue. \n"
+            "\n"
+            "## Knowledge from Function Calls\n"
+            "{}\n"
+            "## General Knowledge of All Items\n"
+            "{}\n"
+            "\n"
+            "# Worldview: It describes the setting of the world in the video game. \n"
+            "{}\n"
+        )
+        worldview = worldview + '\n' + knowledge['general_info']
 
-        worldview = worldview + "\n" + knowledge["general_info"]
-        
+        # 'persona' is a dict that specifies properties of the character. 
         character_setting = ""
-        for key in persona:
-            if character_setting == "":
-                character_setting = key + ": " + persona[key]
-            else:
-                character_setting = character_setting + "\n" + key + ": " + persona[key]
-
-        knowledge_setting = ""
+        for k, v in persona.items():
+            character_setting += f'- {k}: {v}\n'
+        
+        # function_knowledge records the specific knowledge obtained from the function calls. 
+        function_knowledge = ""
         for f_result in function_results:
-            if knowledge_setting != "":
-                knowledge_setting = knowledge_setting + "\n"
+            # record each function call in the following format: 
+            # function_name: parameter_name1, parameter_name2, ... -> return_value1, return_value2, ...
+            parameter_info = []
+            return_value_info = []
             for arg in f_result["parameters"]:
-                if knowledge_setting == "":
-                    knowledge_setting = arg + ": " + str(f_result["parameters"][arg])
-                else:
-                    knowledge_setting = knowledge_setting + ", " + arg + ": " + str(f_result["parameters"][arg])
-            for item in f_result["return"]:
-                for key in item:
-                    if knowledge_setting == "":
-                        knowledge_setting = key + ": " + item[key]
-                    else:
-                        knowledge_setting = knowledge_setting + ", " + key + ": " + item[key]
-                        
-        for item in knowledge["knowledge_info"]:
-            if knowledge_setting != "":
-                knowledge_setting = knowledge_setting + "\n"
-            for key in item:
-                if knowledge_setting == "":
-                    knowledge_setting = key + ": " + item[key]
-                else:
-                    knowledge_setting = knowledge_setting + ", " + key + ": " + item[key]
+                parameter_info.append(f'{arg}: {str(f_result["parameters"][arg])}')
+            parameter_info = ", ".join(parameter_info)
 
-                    
+            for item in f_result["return"]:
+                return_value_info.append(str(item))
+            return_value_info = ", ".join(return_value_info)
+            function_knowledge += f'{f_result["name"]}: {parameter_info} -> {return_value_info}\n'
+
+        
+        # general_knowledge records the general knowledge of all items involved in the dialogue. 
+        general_knowledge = ""
+        for item in knowledge["knowledge_info"]:
+            item_info = []
+            for key in item:
+                item_info.append(f'{key}: {item[key]}')
+            item_info = ", ".join(item_info)
+            general_knowledge += f'{item_info}\n'
+        
+        # prepare the dialogue history. 
         history_list = []
         for item in dialogue:
+            # The dataset uses 'npc' to indicate the characters in the game. 
             role = "user"
             if item["speaker"] == "npc":
                 role = "assistant"
             history_list.append({"role":role, "content":item["text"]})
+        
 
-        prompt = base_prompt.replace("[Here is Worldview]", worldview)
-        prompt = prompt.replace("[Here is Role]", role)
-        prompt = prompt.replace("[Here is Character Setting]", character_setting)
-        prompt = prompt.replace("[Here is Knowledge]", knowledge_setting)
+        prompt = dialogue_prompt.format(character_setting, function_knowledge, general_knowledge, worldview)
         
         messages = []
         messages.append({"role":"system", "content":prompt})
