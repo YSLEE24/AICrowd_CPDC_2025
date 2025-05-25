@@ -1,10 +1,12 @@
 from langchain.tools import tool
 from typing import List, Dict, Tuple
+from langchain_core.utils.function_calling import convert_to_openai_function
 
-@tool
-def sell_request_confirm(item_name: str) -> None:
+
+@tool 
+def sell_request_record(item_name: str) -> None:
     """
-    Confirm whether to purchase the specified weapon (e.g. Avis Wind, Short Sword, etc.).
+    Record the specified weapon (e.g. Avis Wind, Short Sword, etc.) as a potential purchase.
 
     Parameters:
     ----------
@@ -21,7 +23,7 @@ def sell_request_confirm(item_name: str) -> None:
 @tool 
 def sell(item_names: List[str]) -> None:
     """
-    Sell the specified weapon (e.g. Avis Wind, Short Sword, etc.).
+    Sell the specified weapon (e.g. Avis Wind, Short Sword, etc.) or weapons recorded as potential purchases.
 
     Parameters:
     ----------
@@ -35,7 +37,7 @@ def sell(item_names: List[str]) -> None:
 
     pass
 
-@tool
+@tool 
 def equip(item_name: str) -> None:
     """
     Equip the specified weapon (e.g. Avis Wind, Short Sword, etc.).
@@ -52,12 +54,7 @@ def equip(item_name: str) -> None:
 
     pass
 
-all_functions = [sell_request_confirm, sell, equip]
-action_functions_0002 = {'function_registry': {
-    f.name: {
-        'name': f.name, 
-        'description': f.description,
-        'args': f.args
-    }
-    for f in all_functions
+all_functions = [sell_request_record, sell, equip]
+action_functions_0003 = {'function_registry': {
+    f.name: convert_to_openai_function(f, strict=True) for f in all_functions
 }}

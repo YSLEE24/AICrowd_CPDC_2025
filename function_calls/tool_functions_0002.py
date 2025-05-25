@@ -1,7 +1,9 @@
 from typing import List, Dict
 from langchain.tools import tool
+from langchain_core.utils.function_calling import convert_to_openai_function
 
-@tool 
+
+@tool
 def search_item(item_name: str, item_price: str, item_type: str, item_attack: str, item_description: str,
                 item_name_operator: str, item_price_operator: str, item_type_operator: str, item_attack_operator: str) -> List[Dict[str, str]]:
     """
@@ -48,11 +50,12 @@ def search_item(item_name: str, item_price: str, item_type: str, item_attack: st
         A list of weapon names along with the reasons for the selection.
 
     """
+    
     pass 
 
 
 
-@tool 
+@tool
 def check_basic_info(item_name: str) -> List[Dict[str, str]]:
     """
     Check the price, type, attack level, and basic information of a specified weapon (e.g. Avis Wind, Short Sword, etc.).
@@ -68,9 +71,11 @@ def check_basic_info(item_name: str) -> List[Dict[str, str]]:
         Outputs basic information about the specified weapon (e.g. Avis Wind, Short Sword, etc.).
 
     """
-    pass
+    
+    pass 
 
-@tool 
+
+@tool
 def check_price(item_name: str) -> List[Dict[str, str]]:
     """
     Check the price of a specified weapon (e.g. Avis Wind, Short Sword, etc.).
@@ -86,8 +91,7 @@ def check_price(item_name: str) -> List[Dict[str, str]]:
         Outputs the price of the specified weapon (e.g. Avis Wind, Short Sword, etc.)
 
     """
-    pass
-
+    pass 
 
 @tool 
 def check_type(item_name: str) -> List[Dict[str, str]]:
@@ -145,11 +149,6 @@ def check_description(item_name: str) -> List[Dict[str, str]]:
 
 
 all_functions = [search_item, check_basic_info, check_price, check_type, check_attack, check_description]
-tool_functions_0003 = {'function_registry': {
-    f.name: {
-        'name': f.name, 
-        'description': f.description,
-        'args': f.args
-    }
-    for f in all_functions
+tool_functions_0002 = {'function_registry':{
+    f.name: convert_to_openai_function(f, strict=True) for f in all_functions
 }}

@@ -7,7 +7,7 @@ import argparse
 from tqdm import tqdm
 import os
 import time
-from function_call_langchain import tool_map, action_map, Executor
+from function_calls import tool_map, action_map, Executor
 
 
 def load_data(file_path):

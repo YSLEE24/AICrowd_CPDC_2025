@@ -1,7 +1,9 @@
 from typing import List, Dict
 from langchain.tools import tool
+from langchain_core.utils.function_calling import convert_to_openai_function
 
-@tool
+
+@tool 
 def search_quest(quest_name: str, quest_level: str, quest_duration: str, quest_reward: str, quest_description: str,
                  quest_name_operator: str, quest_level_operator: str, quest_duration_operator: str, quest_reward_operator: str) -> List[Dict[str, str]]:
     """
@@ -44,7 +46,8 @@ def search_quest(quest_name: str, quest_level: str, quest_duration: str, quest_r
     """
 
     pass
-    
+
+
 
 @tool 
 def check_basic_info(quest_name: str) -> List[Dict[str, str]]:
@@ -82,7 +85,7 @@ def check_level(quest_name: str) -> List[Dict[str, str]]:
 
     pass
 
-@tool
+@tool 
 def check_duration(quest_name: str) -> List[Dict[str, str]]:
     """
     Check the duration (hours) of a specified quest (e.g. Collecting Medical Herbs, Collecting Dragon Teardrops , etc.).
@@ -138,11 +141,6 @@ def check_description(quest_name: str) -> List[Dict[str, str]]:
     pass
 
 all_functions = [search_quest, check_basic_info, check_level, check_duration, check_reward, check_description]
-tool_functions_0005 = {'function_registry': {
-    f.name: {
-        'name': f.name, 
-        'description': f.description, 
-        'args': f.args
-    }
-    for f in all_functions
+tool_functions_0006 = {'function_registry': {
+    f.name: convert_to_openai_function(f, strict=True) for f in all_functions
 }}

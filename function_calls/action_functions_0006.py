@@ -1,9 +1,11 @@
 from langchain.tools import tool
+from langchain_core.utils.function_calling import convert_to_openai_function
+
 
 @tool 
-def select_request_confirm(quest_name: str) -> None:
+def select_request_record(quest_name: str) -> None:
     """
-    Confirm whether to select the specified quest (e.g. Collecting Medical Herbs, Collecting Dragon Teardrops , etc.).
+    Record the specified quest (e.g. Collecting Medical Herbs, Collecting Dragon Teardrops , etc.) as a potential selection.
 
     Parameters:
     ----------
@@ -20,8 +22,8 @@ def select_request_confirm(quest_name: str) -> None:
 @tool 
 def select(quest_name: str) -> None:
     """
-    Select the specified quest (e.g. Collecting Medical Herbs, Collecting Dragon Teardrops , etc.).
- 
+    Select the specified quest (e.g. Collecting Medical Herbs, Collecting Dragon Teardrops , etc.) or quests recorded as potential selection.
+
     Parameters:
     ----------
     quest_name: str
@@ -51,12 +53,7 @@ def start(quest_name: str) -> None:
 
     pass
 
-all_functions = [select_request_confirm, select, start]
-action_functions_0005 = {'function_registry': {
-    f.name: {
-        'name': f.name, 
-        'description': f.description,
-        'args': f.args
-    }
-    for f in all_functions
+all_functions = [select_request_record, select, start]
+action_functions_0006 = {'function_registry': {
+    f.name: convert_to_openai_function(f, strict=True) for f in all_functions
 }}
