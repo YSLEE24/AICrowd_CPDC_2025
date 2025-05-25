@@ -142,7 +142,7 @@ class VanillaLlamaAgent(object):
 
         # Only return response. We don't return function calls as it is recorded in the 'executor'. 
         return {
-            'prompts': messages_resp, 
+            'prompts': dialogue_messages, 
             'final_responses': res_str
         }
 
