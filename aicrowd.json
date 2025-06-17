@@ -1,6 +1,6 @@
 { 
     "challenge_id": "task-oriented-dialogue-task-2",
-    "gpu": false,  
+    "gpu": false,
     "hf_models": [
        {
         "repo_id": "meta-llama/Llama-3.1-8B-Instruct",
