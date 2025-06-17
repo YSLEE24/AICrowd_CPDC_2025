@@ -8,10 +8,14 @@ from tqdm import tqdm
 import os
 import time
 from function_calls import tool_map, action_map, Executor
+from dotenv import load_dotenv
+
+load_dotenv()
+api_key = os.getenv("GEMINI_API_KEY")
 
 
 def load_data(file_path):
-    with open(file_path, "r") as fp:
+    with open(file_path, "r", encoding="utf-8") as fp:
         data = json.load(fp)
 
     return npcdataset.parsers.parse_conversation_data(data, "test")

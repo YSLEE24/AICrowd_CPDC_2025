@@ -1,6 +1,6 @@
 { 
     "challenge_id": "task-oriented-dialogue-task-1",
-    "gpu": true,
+    "gpu": false, // GPU 트랙같이 할때 켜놓기 True로
     "hf_models": [
        {
         "repo_id": "meta-llama/Llama-3.1-8B-Instruct",
