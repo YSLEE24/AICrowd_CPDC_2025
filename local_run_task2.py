@@ -8,10 +8,10 @@ from tqdm import tqdm
 import os
 import time
 from function_calls import tool_map, action_map, Executor
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
-api_key = os.getenv("GEMINI_API_KEY")
+# load_dotenv()
+# api_key = os.getenv("GEMINI_API_KEY")
 
 
 def load_data(file_path):
