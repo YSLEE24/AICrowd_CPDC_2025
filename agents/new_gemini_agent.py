@@ -4,6 +4,9 @@ import json
 import os
 import time
 
+def invoke_function_calling_llm():
+    pass
+
 class NewGeminiAgent(object):
     """
     NewOpenAIAgent is a new implementation for API Track of the Sony CPDC 2025 Challenge. 
