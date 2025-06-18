@@ -1,5 +1,5 @@
 { 
-    "challenge_id": "task-oriented-dialogue-task-2",
+    "challenge_id": "context-aware-dialogue-task-2",
     "gpu": false,
     "hf_models": [
        {
