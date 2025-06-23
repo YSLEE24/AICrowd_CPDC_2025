@@ -6,3 +6,5 @@ hf_transfer
 openai
 huggingface_hub
 accelerate
+sentence-transformers
+pandas
